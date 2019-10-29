@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8" />
+<title>Trang chủ</title>
+<!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<th:block th:replace="fragments/header" />
+</head>
+
+<body>
+
+	<div class="d-flex justify-content-between">
+		<!-- SIDE BAR -->
+		<div th:replace="fragments/sidebar :: sidebar"></div>
+
+		<div id="admin-wrapper">
+			<!-- HEADER -->
+			<div th:replace="fragments/navbar :: navbar"></div>
+
+			<!-- CONTENT -->
+			<section id="admin-content" class="p-3" layout:fragment="content">
+				<div class="row">
+					<div class="col-md-6">
+						<canvas id="mychart" width="400" height="400"></canvas>
+					</div>
+					<div class="col-md-6">
+						<canvas id="mychart2" width="400" height="400"></canvas>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+<th:block th:replace="fragments/footer" />
+<th:block layout:fragment="scripts" />
+
+</html>
