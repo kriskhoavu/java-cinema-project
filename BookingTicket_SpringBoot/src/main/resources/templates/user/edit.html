@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<title>Cập nhật thành viên</title>
+</head>
+<body>
+	<section layout:fragment="content">
+		<h3 class="mb-4 text-center">Cập nhật thành viên</h3>
+		<div class="text-center text-danger" th:text="${message}"></div>
+		<form method="post" th:object="${user}" th:action="@{/admin/user/edit}" action="#">
+			<div class="row">
+				<div class="col-md-6">
+					<input type="hidden" th:field="*{id}" />
+					<div class="form-group">
+						<label>Họ tên</label> 
+						<input type="text" th:field="*{fullname}" class="form-control" />
+						<span class="text-danger" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}"></span>
+					</div>
+					<div class="form-group">
+						<label>Email</label> 
+						<input type="text" th:field="*{email}" class="form-control" />
+						<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+					</div>
+					<div class="form-group">
+						<label>Điện thoại</label> 
+						<input type="text" th:field="*{phone}" class="form-control" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Địa chỉ</label> 
+						<input type="text" th:field="*{address}" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label>Loại thành viên</label>
+						<select th:field="*{roleId}" class="form-control">
+						    <option th:each="item : ${roles}" th:value="${item.id}" th:text="${item.description}"
+						      th:selected="${item.id == roleId}">
+						     </option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Avatar</label> 
+						<input type="hidden" th:field="*{avatar}" />
+						<input type="file" id="fileUpload" data-target="#avatar" data-img="#imgdp" class="form-control"/>
+						<span class="text-danger" th:if="${#fields.hasErrors('avatar')}" th:errors="*{avatar}"></span>
+						<img class="mt-2" th:src="@{${user.avatar}}" id="imgdp" height="100" />
+					</div>
+				</div>
+				<div class="col-12 mt-3">
+					<button type="submit" class="btn btn-success">Lưu lại</button>
+					<a class="btn btn-secondary" th:href="@{/admin/user}">Quay lại</a>
+				</div>
+			</div>
+		</form>
+	</section>
+</body>
+</html>

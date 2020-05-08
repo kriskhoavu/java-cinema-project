@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<title>Thêm mới phim</title>
+</head>
+<body>
+	<section layout:fragment="content">
+		<h3 class="mb-4 text-center">Thêm mới phim</h3>
+		<div class="text-center text-danger" th:text="${message}"></div>
+		<form method="post" th:object="${movie}" th:action="@{/admin/movie/add}" action="#">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Tên phim</label> 
+						<input type="text" th:field="*{name}" class="form-control" />
+						<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+					</div>
+					<div class="form-group">
+						<label>Hình</label> 
+						<input type="text" th:field="*{image}" class="form-control" />
+						<span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Ngày chiếu</label> 
+						<input type="text" th:field="*{openDate}" class="form-control" />
+						<span class="text-danger" th:if="${#fields.hasErrors('openDate')}" th:errors="*{openDate}"></span>
+					</div>
+					<div class="form-group">
+						<label>Trailer</label> 
+						<input type="text" th:field="*{trailer}" class="form-control" />
+						<span class="text-danger" th:if="${#fields.hasErrors('trailer')}" th:errors="*{trailer}"></span>
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="form-group">
+						<label>Thông tin phim</label> 
+						<textarea rows="5" th:field="*{description}" class="form-control"></textarea>
+						<span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+					</div>
+				</div>
+				<div class="col-12 mt-3">
+					<button type="submit" class="btn btn-success">Lưu lại</button>
+					<a class="btn btn-secondary" th:href="@{/admin/movie}">Quay lại</a>
+				</div>
+			</div>
+		</form>
+	</section>
+</body>
+</html>
