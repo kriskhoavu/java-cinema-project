@@ -32,8 +32,7 @@ public class RegisterDto {
 	public RegisterDto() {
 	}
 
-	public RegisterDto(String id, String email, String fullname, String password, String confirm, String avatar,
-			String phone, String address, String roleId) {
+	public RegisterDto(String id, String email, String fullname, String password, String confirm, String avatar, String phone, String address, String roleId) {
 		super();
 		this.id = id;
 		this.email = email;

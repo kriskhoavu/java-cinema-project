@@ -42,35 +42,32 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		// ObjectMapper().readValue() sử dụng để chuyển chuổi JSON thành đối tượng Java
 		try {
 			User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
-			System.out.println("--- Start attemptAuthentication ---");
-			Authentication authentication = _authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
-			System.out.println("--- End attemptAuthentication ---");
-			return authentication;// Nếu trả về authentication thì sẽ vào method successfulAUthentication...
+			Authentication authentication = _authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+			return authentication;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null; // Nếu trả về null thì sẽ vào method unsuccessfulAUthentication...
+		return null; 
 	}
 
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-		//  Lấy thông tin đăng nhập để tạo token
+
 		UserDetails userDetails = (CustomUserDetails) authResult.getPrincipal();
 		String token = Jwts.builder()
-			.setSubject(userDetails.getUsername())
-			.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-			.signWith(SignatureAlgorithm.HS512, SECRET)
-			.compact();
-		
-		//Gan token vao header
+				.setSubject(userDetails.getUsername())
+				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+				.signWith(SignatureAlgorithm.HS512, SECRET).compact();
+
 		response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
-		//return token cho client
 		response.getWriter().write(TOKEN_PREFIX + token);
 		response.getWriter().close();
 	}
 
 	@Override
-	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException failed) throws IOException, ServletException {
 		response.setStatus(401);
 		response.setContentType("authentication/json");
 		response.setCharacterEncoding("UTF-8");

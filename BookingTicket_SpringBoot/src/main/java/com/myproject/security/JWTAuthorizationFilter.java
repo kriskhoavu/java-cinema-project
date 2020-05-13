@@ -2,6 +2,7 @@
 package com.myproject.security;
 
 import java.io.IOException;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureException;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
@@ -31,10 +33,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("--- Start doFilterInternal ---");
-		String header = request.getHeader(HEADER_STRING);
 		
-		if (header == "" && !header.startsWith(TOKEN_PREFIX)) {
+		String header = request.getHeader(HEADER_STRING);
+
+		if (header == null || !header.startsWith(TOKEN_PREFIX)) {
 			response.setStatus(401);
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().println("Login failed");
@@ -44,27 +46,27 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 		UsernamePasswordAuthenticationToken authenticationToken = getauthenticationtoken(request);
 
-		// Set thong tin user dang nhap vao toan he thong
 		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 		chain.doFilter(request, response);
-		System.out.println("--- End doFilterInternal ---");
 	}
 
 	private UsernamePasswordAuthenticationToken getauthenticationtoken(HttpServletRequest request) {
-		System.out.println("--------- Start UsernamePasswordAuthenticationToken ---------");		
-		String token = request.getHeader(HEADER_STRING);
+		try {
+			String token = request.getHeader(HEADER_STRING);
 
-		String username = Jwts.parser()
-			.setSigningKey(SECRET)
-			.parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-			.getBody()
-			.getSubject();
-		
-		if (username == "") {
+			String username = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+					.getBody().getSubject();
+
+			if (username == "") {
+				return null;
+			}
+
+			UserDetails userDetails = _userdetDetailsService.loadUserByUsername(username);
+			return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+		} catch (SignatureException e) {
+			System.out.println("Invalid JWT signature.");
+			e.printStackTrace();
 			return null;
 		}
-
-		UserDetails userDetails = _userdetDetailsService.loadUserByUsername(username);
-		return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 	}
 }
