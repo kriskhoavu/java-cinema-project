@@ -24,14 +24,14 @@ public class CustomUserDetails extends User {
 		super(username, password, authorities);
 	}
 
-	public Collection<GrantedAuthority> getAuthorities() {
+/* 	public Collection<GrantedAuthority> getAuthorities() {
 
 		return _roleRepository
 				.findAll()
 				.stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName()))
 				.collect(Collectors.toList());
-	}
+	} */
 
 	public String getFullname() {
 		return fullname;
