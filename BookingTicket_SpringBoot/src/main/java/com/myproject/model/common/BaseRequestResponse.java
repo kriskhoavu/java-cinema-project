@@ -1,4 +1,4 @@
-package com.myproject.common;
+package com.myproject.model.common;
 
 import org.springframework.http.HttpStatus;
 

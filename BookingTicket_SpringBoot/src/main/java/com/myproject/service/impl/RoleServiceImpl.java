@@ -9,7 +9,7 @@ import javax.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myproject.common.BaseRequestResponse;
+import com.myproject.model.common.BaseRequestResponse;
 import com.myproject.dto.RoleDto;
 import com.myproject.entity.Role;
 import com.myproject.repository.RoleRepository;

@@ -10,7 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.myproject.common.BaseRequestResponse;
+import com.myproject.model.common.BaseRequestResponse;
 import com.myproject.entity.Cineplex;
 import com.myproject.repository.CineplexRepository;
 import com.myproject.service.CineplexService;

@@ -2,7 +2,7 @@ package com.myproject.service;
 
 import java.util.List;
 
-import com.myproject.common.BaseRequestResponse;
+import com.myproject.model.common.BaseRequestResponse;
 import com.myproject.dto.RegisterDto;
 import com.myproject.dto.UserDto;
 import javax.validation.constraints.Null;

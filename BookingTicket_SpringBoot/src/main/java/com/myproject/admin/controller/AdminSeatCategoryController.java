@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.constraints.Null;
-import com.myproject.common.BaseRequestResponse;
+import com.myproject.model.common.BaseRequestResponse;
 import com.myproject.entity.SeatCategory;
 import com.myproject.service.SeatCategoryService;
 

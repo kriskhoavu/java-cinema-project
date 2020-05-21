@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.validation.constraints.Null;
-import com.myproject.common.BaseRequestResponse;
+import com.myproject.model.common.BaseRequestResponse;
 import com.myproject.entity.SeatCategory;
 import com.myproject.repository.SeatCategoryRepository;
 import com.myproject.service.SeatCategoryService;

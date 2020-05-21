@@ -6,7 +6,7 @@ import javax.validation.constraints.Null;
 
 import org.springframework.data.domain.Page;
 
-import com.myproject.common.BaseRequestResponse;
+import com.myproject.model.common.BaseRequestResponse;
 import com.myproject.entity.Cineplex;
 
 public interface CineplexService {

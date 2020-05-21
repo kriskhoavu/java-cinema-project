@@ -2,7 +2,7 @@ package com.myproject.service;
 
 import java.util.List;
 import javax.validation.constraints.Null;
-import com.myproject.common.BaseRequestResponse;
+import com.myproject.model.common.BaseRequestResponse;
 import com.myproject.entity.Cinema;
 
 public interface CinemaService {

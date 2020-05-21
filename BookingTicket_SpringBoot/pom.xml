@@ -83,6 +83,11 @@
 		  <artifactId>jjwt</artifactId>
 		  <version>0.9.0</version>
 		</dependency>
+		<!-- <dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency> -->		
 		<dependency>
 		  <groupId>org.projectlombok</groupId>
 		  <artifactId>lombok</artifactId>
@@ -98,5 +103,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
