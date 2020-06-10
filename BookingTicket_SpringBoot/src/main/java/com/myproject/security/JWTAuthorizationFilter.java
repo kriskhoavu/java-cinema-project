@@ -8,61 +8,65 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
-import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+@Component
+public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-	private final String SECRET = "KHOA";
 	private final String TOKEN_PREFIX = "Bearer ";
 	private final String HEADER_STRING = "Authorization";
 
-	private UserDetailsService _userdetDetailsService;
+	@Autowired
+	private UserDetailsService userdetDetailsService;
 
-	public JWTAuthorizationFilter(AuthenticationManager authenticationManager, UserDetailsService userdetDetailsService) {
-		super(authenticationManager);
-		this._userdetDetailsService = userdetDetailsService;
-	}
+	@Autowired
+	private JWTUtil jwtUtil;
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-		String header = request.getHeader(HEADER_STRING);
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+
+		final String header = request.getHeader(HEADER_STRING);
 
 		if (header == null || !header.startsWith(TOKEN_PREFIX)) {
 			response.setStatus(401);
 			response.setCharacterEncoding("UTF-8");
-			response.getWriter().println("Login failed");
+			response.getWriter().println("Unauthorized.");
 			response.getWriter().close();
 			return;
 		}
-
-		UsernamePasswordAuthenticationToken authenticationToken = getauthenticationtoken(request);
-
+		
+		UsernamePasswordAuthenticationToken authenticationToken = getauthenticationtoken(request, header);
+		
+		authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+		
+		//done authorization => continue for next step
 		chain.doFilter(request, response);
 	}
 
-	private UsernamePasswordAuthenticationToken getauthenticationtoken(HttpServletRequest request) {
+	private UsernamePasswordAuthenticationToken getauthenticationtoken(HttpServletRequest request, String header) {
 		try {
-			String token = request.getHeader(HEADER_STRING);
-
-			String username = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-					.getBody().getSubject();
-
-			if (username == "") {
-				return null;
-			}
-
-			UserDetails userDetails = _userdetDetailsService.loadUserByUsername(username);
-			return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+			String token = jwtUtil.getTokenFromHeader(header);
+			String username = jwtUtil.extractUsername(token);
+			
+			if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+				UserDetails userDetails = userdetDetailsService.loadUserByUsername(username);
+				
+				if(jwtUtil.validateToken(token, userDetails)) {
+					return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+				}
+			} 
+			return null;
 		} catch (SignatureException e) {
 			System.out.println("Invalid JWT signature.");
 			e.printStackTrace();

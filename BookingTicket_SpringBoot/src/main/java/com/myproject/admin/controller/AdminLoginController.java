@@ -2,6 +2,7 @@ package com.myproject.admin.controller;
 
 import com.myproject.model.common.AuthenticationRequest;
 import com.myproject.model.common.AuthenticationResponse;
+import com.myproject.security.CustomUserDetailsService;
 import com.myproject.security.JWTUtil;
 
 import org.springframework.ui.Model;
@@ -11,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,10 +23,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("auth")
 public class AdminLoginController {
 
+	@Autowired
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	private UserDetailsService userdetDetailsService;
+	private CustomUserDetailsService userdetDetailsService;
 
 	@Autowired
 	private JWTUtil jwtUtil;
@@ -47,7 +48,7 @@ public class AdminLoginController {
 		} catch (BadCredentialsException e) {
 			throw new Exception("Incorrect username or password", e);
 		}
-		final UserDetails userDetails = userdetDetailsService.loadUserByUsername(auth.getPassword());
+		final UserDetails userDetails = userdetDetailsService.loadUserByUsername(auth.getEmail());
 		final String jwt = jwtUtil.generateToken(userDetails);
 
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
