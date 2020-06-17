@@ -37,18 +37,13 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
 		final String header = request.getHeader(HEADER_STRING);
 
-		if (header == null || !header.startsWith(TOKEN_PREFIX)) {
-			response.setStatus(401);
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().println("Unauthorized.");
-			response.getWriter().close();
-			return;
+		if (header != null && header.startsWith(TOKEN_PREFIX)) {
+			UsernamePasswordAuthenticationToken authenticationToken = getauthenticationtoken(request, header);
+			
+			authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+			
 		}
-		
-		UsernamePasswordAuthenticationToken authenticationToken = getauthenticationtoken(request, header);
-		
-		authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 		
 		//done authorization => continue for next step
 		chain.doFilter(request, response);
