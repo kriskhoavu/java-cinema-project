@@ -2,15 +2,15 @@ package com.myproject.service;
 
 import java.util.List;
 
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.dto.RegisterDto;
-import com.myproject.dto.UserDto;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.dto.RegisterDto;
+import com.myproject.model.dto.UserDto;
 import javax.validation.constraints.Null;
 
 public interface UserService {
 	public List<UserDto> findAll();
 	public UserDto findById(String id);
-	public BaseRequestResponse<Null> insert(RegisterDto model);
-	public BaseRequestResponse<Null> update(UserDto model);
-	public BaseRequestResponse<Null> delete(String id);
+	public ResponseModel<Null> insert(RegisterDto model);
+	public ResponseModel<Null> update(UserDto model);
+	public ResponseModel<Null> delete(String id);
 }

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.validation.constraints.Null;
 
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.entity.Movie;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.Movie;
 import com.myproject.repository.MovieRepository;
 import com.myproject.service.MovieService;
 
@@ -28,39 +28,39 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
-	public BaseRequestResponse<Null> insert(Movie model) {
+	public ResponseModel<Null> insert(Movie model) {
 		try {
 			movieRepository.save(model);
-			return new BaseRequestResponse<Null>(true, "Thêm mới thành công!");
+			return new ResponseModel<Null>(true, "Thêm mới thành công!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Thêm mới thất bại!");
+		return new ResponseModel<Null>(false, "Thêm mới thất bại!");
 	}
 
 	@Override
-	public BaseRequestResponse<Null> update(Movie model) {
+	public ResponseModel<Null> update(Movie model) {
 		try {
 			if(movieRepository.findById(model.getId()) == null) {
-				return new BaseRequestResponse<Null>(false, "Không tìm thấy dữ liệu phù hợp!");
+				return new ResponseModel<Null>(false, "Không tìm thấy dữ liệu phù hợp!");
 			}
 			movieRepository.save(model);
-			return new BaseRequestResponse<Null>(true, "Cập nhật thành công!");
+			return new ResponseModel<Null>(true, "Cập nhật thành công!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Cập nhật thất bại!");
+		return new ResponseModel<Null>(false, "Cập nhật thất bại!");
 	}
 
 	@Override
-	public BaseRequestResponse<Null> delete(int id) {
+	public ResponseModel<Null> delete(int id) {
 		try {
 			movieRepository.deleteById(id);
-			return new BaseRequestResponse<Null>(true, "Xóa thành công!");
+			return new ResponseModel<Null>(true, "Xóa thành công!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Xóa thất bại!");
+		return new ResponseModel<Null>(false, "Xóa thất bại!");
 	}
 
 	@Override

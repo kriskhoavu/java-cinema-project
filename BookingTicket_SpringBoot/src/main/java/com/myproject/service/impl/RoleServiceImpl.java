@@ -9,9 +9,9 @@ import javax.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.dto.RoleDto;
-import com.myproject.entity.Role;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.dto.RoleDto;
+import com.myproject.model.entity.Role;
 import com.myproject.repository.RoleRepository;
 import com.myproject.service.RoleService;
 
@@ -53,10 +53,10 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	public BaseRequestResponse<Null> insert(RoleDto model) {
+	public ResponseModel<Null> insert(RoleDto model) {
 		try {
 			if(roleRepository.findByName(model.getName()) != null) {
-				return new BaseRequestResponse<Null>(false, "Tên này đã được sử dụng!");
+				return new ResponseModel<Null>(false, "Tên này đã được sử dụng!");
 			}
 			Role role = new Role();
 			role.setId(UUID.randomUUID().toString());
@@ -64,46 +64,46 @@ public class RoleServiceImpl implements RoleService {
 			role.setDescription(model.getDescription());
 			
 			if(roleRepository.save(role) != null) {
-				return new BaseRequestResponse<Null>(true, "Thêm mới thành công!");
+				return new ResponseModel<Null>(true, "Thêm mới thành công!");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return new BaseRequestResponse<Null>(false, "Thêm mới thất bại!");
+		return new ResponseModel<Null>(false, "Thêm mới thất bại!");
 	}
 
 	@Override
-	public BaseRequestResponse<Null> update(RoleDto model) {
+	public ResponseModel<Null> update(RoleDto model) {
 		try {
 			Role role = roleRepository.findById(model.getId()).get();
 			if(role == null) {
-				return new BaseRequestResponse<Null>(false, "Không tìm thấy dữ liệu!");
+				return new ResponseModel<Null>(false, "Không tìm thấy dữ liệu!");
 			}
 			role.setId(UUID.randomUUID().toString());
 			role.setName(model.getName());
 			role.setDescription(model.getDescription());
 			
 			if(roleRepository.save(role) != null) {
-				return new BaseRequestResponse<Null>(true, "Cập nhật thành công!");
+				return new ResponseModel<Null>(true, "Cập nhật thành công!");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return new BaseRequestResponse<Null>(false, "Cập nhật thất bại!");
+		return new ResponseModel<Null>(false, "Cập nhật thất bại!");
 	}
 
 	@Override
-	public BaseRequestResponse<Null> delete(String id) {
+	public ResponseModel<Null> delete(String id) {
 		try {
 			roleRepository.deleteById(id);
-			return new BaseRequestResponse<Null>(true, "Xóa quyền thành công!");
+			return new ResponseModel<Null>(true, "Xóa quyền thành công!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Xóa quyền thất bại!");
+		return new ResponseModel<Null>(false, "Xóa quyền thất bại!");
 	}
 }

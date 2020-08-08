@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.entity.Cineplex;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.Cineplex;
 import com.myproject.repository.CineplexRepository;
 import com.myproject.service.CineplexService;
 
@@ -33,39 +33,39 @@ public class CineplexServiceImpl implements CineplexService {
 	}
 
 	@Override
-	public BaseRequestResponse<Null> insert(Cineplex model) {
+	public ResponseModel<Null> insert(Cineplex model) {
 		try {
 			_cineplexRepository.save(model);
-			return new BaseRequestResponse<Null>(true, "Thêm mới thành công!");
+			return new ResponseModel<Null>(true, "Thêm mới thành công!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Thêm mới thất bại!");
+		return new ResponseModel<Null>(false, "Thêm mới thất bại!");
 	}
 
 	@Override
-	public BaseRequestResponse<Null> update(Cineplex model) {
+	public ResponseModel<Null> update(Cineplex model) {
 		try {
 			if (_cineplexRepository.findById(model.getId()) == null) {
-				return new BaseRequestResponse<Null>(false, "Không tìm thấy dữ liệu phù hợp!");
+				return new ResponseModel<Null>(false, "Không tìm thấy dữ liệu phù hợp!");
 			}
 			_cineplexRepository.save(model);
-			return new BaseRequestResponse<Null>(true, "Cập nhật thành công!");
+			return new ResponseModel<Null>(true, "Cập nhật thành công!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Cập nhật thất bại!");
+		return new ResponseModel<Null>(false, "Cập nhật thất bại!");
 	}
 
 	@Override
-	public BaseRequestResponse<Null> delete(int id) {
+	public ResponseModel<Null> delete(int id) {
 		try {
 			_cineplexRepository.deleteById(id);
-			return new BaseRequestResponse<Null>(true, "Xóa thành công!");
+			return new ResponseModel<Null>(true, "Xóa thành công!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Xóa thất bại!");
+		return new ResponseModel<Null>(false, "Xóa thất bại!");
 	}
 
 	@Override

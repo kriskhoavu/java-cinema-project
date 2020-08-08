@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.constraints.Null;
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.dto.RoleDto;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.dto.RoleDto;
 import com.myproject.service.RoleService;
 
 @Controller
@@ -43,7 +43,7 @@ public class AdminRoleController {
 			model.addAttribute("role", role);
 			return "role/add";
 		}
-		BaseRequestResponse<Null> errorModel = roleService.insert(role);
+		ResponseModel<Null> errorModel = roleService.insert(role);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("role", role);
@@ -68,7 +68,7 @@ public class AdminRoleController {
 			model.addAttribute("role", role);
 			return "role/edit";
 		}
-		BaseRequestResponse<Null> errorModel = roleService.update(role);
+		ResponseModel<Null> errorModel = roleService.update(role);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("role", role);

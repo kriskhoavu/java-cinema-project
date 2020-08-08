@@ -19,14 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.entity.Cineplex;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.Cineplex;
 import com.myproject.service.CineplexService;
 
 @RestController
 @RequestMapping("api/cineplex")
 public class CineplexController {
-
 	@Autowired
 	private CineplexService cineplexService;
 
@@ -45,21 +44,21 @@ public class CineplexController {
 	@PostMapping("add")
 	public Object add(@Validated @RequestBody Cineplex cineplex, BindingResult errors) {
 
-		BaseRequestResponse<Null> responseModel = new BaseRequestResponse<Null>();
+		ResponseModel<Null> responseModel = new ResponseModel<Null>();
 
 		if (errors.hasErrors()) {
 			responseModel.setMessage("Request model is required.");
-			responseModel.setResponseCode(HttpStatus.BAD_REQUEST);
+			responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
 			return responseModel;
 		}
 
 		responseModel = cineplexService.insert(cineplex);
 
 		if (!responseModel.isStatus()) {
-			responseModel.setResponseCode(HttpStatus.BAD_REQUEST);
+			responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
 			return responseModel;
 		}
-		responseModel.setResponseCode(HttpStatus.CREATED);
+		responseModel.setHttpStatus(HttpStatus.CREATED);
 		
 		return responseModel;
 	}
@@ -67,11 +66,11 @@ public class CineplexController {
 	@PutMapping("edit/{id}")
 	public Object edit(@PathVariable int id, @Validated @RequestBody Cineplex cineplex, BindingResult errors) {
 
-		BaseRequestResponse<Null> responseModel = new BaseRequestResponse<Null>();
+		ResponseModel<Null> responseModel = new ResponseModel<Null>();
 
 		if (errors.hasErrors()) {
 			responseModel.setMessage("Request model is required.");
-			responseModel.setResponseCode(HttpStatus.BAD_REQUEST);
+			responseModel.setHttpStatus(HttpStatus.BAD_REQUEST);
 			
 			return responseModel;
 		}
@@ -83,14 +82,14 @@ public class CineplexController {
 			return responseModel;
 
 		}
-		responseModel.setResponseCode(HttpStatus.OK);
+		responseModel.setHttpStatus(HttpStatus.OK);
 		return responseModel;
 	}
 	
 	@DeleteMapping("delete/{id}")
 	public Object delete(@PathVariable int id) {
 
-		BaseRequestResponse<Null> responseModel = cineplexService.delete(id);
+		ResponseModel<Null> responseModel = cineplexService.delete(id);
 
 		if (!responseModel.isStatus()) {
 			return new ResponseEntity<>(responseModel.getMessage(), HttpStatus.BAD_REQUEST);

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.constraints.Null;
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.entity.Movie;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.Movie;
 import com.myproject.service.MovieService;
 
 @Controller
@@ -43,7 +43,7 @@ public class AdminMovieController {
 			model.addAttribute("movie", movie);
 			return "movie/add";
 		}
-		BaseRequestResponse<Null> errorModel = movieService.insert(movie);
+		ResponseModel<Null> errorModel = movieService.insert(movie);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("movie", movie);
@@ -68,7 +68,7 @@ public class AdminMovieController {
 			model.addAttribute("movie", movie);
 			return "movie/edit";
 		}
-		BaseRequestResponse<Null> errorModel = movieService.update(movie);
+		ResponseModel<Null> errorModel = movieService.update(movie);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("movie", movie);

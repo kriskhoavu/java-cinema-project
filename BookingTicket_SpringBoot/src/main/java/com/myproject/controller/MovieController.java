@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myproject.entity.Movie;
+import com.myproject.model.entity.Movie;
 import com.myproject.service.MovieService;
 
 @RestController

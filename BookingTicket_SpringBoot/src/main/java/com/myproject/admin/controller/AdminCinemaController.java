@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.constraints.Null;
 
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.entity.Cinema;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.Cinema;
 import com.myproject.service.CinemaService;
 import com.myproject.service.CineplexService;
 
@@ -50,7 +50,7 @@ public class AdminCinemaController {
 			model.addAttribute("cineplexs", cineplexService.findAll());
 			return "cinema/add";
 		}
-		BaseRequestResponse<Null> errorModel = cinemaService.insert(cinema);
+		ResponseModel<Null> errorModel = cinemaService.insert(cinema);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("cinema", cinema);
@@ -78,7 +78,7 @@ public class AdminCinemaController {
 			model.addAttribute("cineplexs", cineplexService.findAll());
 			return "cinema/edit";
 		}
-		BaseRequestResponse<Null> errorModel = cinemaService.update(cinema);
+		ResponseModel<Null> errorModel = cinemaService.update(cinema);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("cineplexs", cineplexService.findAll());

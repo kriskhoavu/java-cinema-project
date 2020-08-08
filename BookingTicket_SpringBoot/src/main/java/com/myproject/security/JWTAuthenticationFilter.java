@@ -16,7 +16,7 @@
 // import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 // import com.fasterxml.jackson.databind.ObjectMapper;
-// import com.myproject.entity.User;
+// import com.myproject.model.entity.User;
 
 // import io.jsonwebtoken.Jwts;
 // import io.jsonwebtoken.SignatureAlgorithm;

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.constraints.Null;
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.entity.Cineplex;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.Cineplex;
 import com.myproject.service.CineplexService;
 
 @Controller
@@ -43,7 +43,7 @@ public class AdminCineplexController {
 			model.addAttribute("cineplex", cineplex);
 			return "cineplex/add";
 		}
-		BaseRequestResponse<Null> errorModel = cineplexService.insert(cineplex);
+		ResponseModel<Null> errorModel = cineplexService.insert(cineplex);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("cineplex", cineplex);
@@ -68,7 +68,7 @@ public class AdminCineplexController {
 			model.addAttribute("cineplex", cineplex);
 			return "cineplex/edit";
 		}
-		BaseRequestResponse<Null> errorModel = cineplexService.update(cineplex);
+		ResponseModel<Null> errorModel = cineplexService.update(cineplex);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("cineplex", cineplex);

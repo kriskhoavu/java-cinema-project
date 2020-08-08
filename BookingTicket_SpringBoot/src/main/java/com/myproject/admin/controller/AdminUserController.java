@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.constraints.Null;
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.dto.RegisterDto;
-import com.myproject.dto.UserDto;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.dto.RegisterDto;
+import com.myproject.model.dto.UserDto;
 import com.myproject.service.RoleService;
 import com.myproject.service.UserService;
 
@@ -48,7 +48,7 @@ public class AdminUserController {
 			model.addAttribute("roles", roleService.findAll());
 			return "user/add";
 		}
-		BaseRequestResponse<Null> errorModel = userService.insert(user);
+		ResponseModel<Null> errorModel = userService.insert(user);
 		if (!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("user", user);
@@ -75,7 +75,7 @@ public class AdminUserController {
 			model.addAttribute("roles", roleService.findAll());
 			return "user/edit";
 		}
-		BaseRequestResponse<Null> errorModel = userService.update(user);
+		ResponseModel<Null> errorModel = userService.update(user);
 		if (!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("user", user);

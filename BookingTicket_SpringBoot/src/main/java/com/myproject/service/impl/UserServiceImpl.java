@@ -10,12 +10,12 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.dto.RegisterDto;
-import com.myproject.dto.RoleDto;
-import com.myproject.dto.UserDto;
-import com.myproject.entity.Role;
-import com.myproject.entity.User;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.dto.RegisterDto;
+import com.myproject.model.dto.RoleDto;
+import com.myproject.model.dto.UserDto;
+import com.myproject.model.entity.Role;
+import com.myproject.model.entity.User;
 import com.myproject.repository.UserRepository;
 import com.myproject.service.UserService;
 
@@ -61,10 +61,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public BaseRequestResponse<Null> insert(RegisterDto model) {
+	public ResponseModel<Null> insert(RegisterDto model) {
 		
 		if(userRepository.findByEmail(model.getEmail()) != null){
-			return new BaseRequestResponse<Null>(false, "Email đã tồn tại!");
+			return new ResponseModel<Null>(false, "Email đã tồn tại!");
 		}
 		try {
 			User user = new User();
@@ -79,21 +79,21 @@ public class UserServiceImpl implements UserService{
 			user.setAddress(model.getAddress());
 			user.setRoleId(model.getRoleId());
 			if(userRepository.save(user) != null) {
-				return new BaseRequestResponse<Null>(true, "Thêm mới thành viên thành công!");
+				return new ResponseModel<Null>(true, "Thêm mới thành viên thành công!");
 			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Thêm mới thành viên thất bại!");
+		return new ResponseModel<Null>(false, "Thêm mới thành viên thất bại!");
 	}
 
 	@Override
-	public BaseRequestResponse<Null> update(UserDto model) {
+	public ResponseModel<Null> update(UserDto model) {
 		try {
 			User user = userRepository.findById(model.getId()).get();
 			if(user == null){
-				return new BaseRequestResponse<Null>(false, "Không tìm thấy thông tin!");
+				return new ResponseModel<Null>(false, "Không tìm thấy thông tin!");
 			}
 			user.setEmail(model.getEmail());
 			user.setFullname(model.getFullname());
@@ -102,23 +102,23 @@ public class UserServiceImpl implements UserService{
 			user.setAddress(model.getAddress());
 			user.setRoleId(model.getRoleId());
 			if(userRepository.save(user) != null) {
-				return new BaseRequestResponse<Null>(true, "Cập nhật thành viên thành công!");
+				return new ResponseModel<Null>(true, "Cập nhật thành viên thành công!");
 			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Cập nhật thành viên thất bại!");
+		return new ResponseModel<Null>(false, "Cập nhật thành viên thất bại!");
 	}
 
 	@Override
-	public BaseRequestResponse<Null> delete(String id) {
+	public ResponseModel<Null> delete(String id) {
 		try {
 			userRepository.deleteById(id);
-			return new BaseRequestResponse<Null>(true, "Xóa thành viên thất bại!");
+			return new ResponseModel<Null>(true, "Xóa thành viên thất bại!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new BaseRequestResponse<Null>(false, "Xóa thành viên thất bại!");
+		return new ResponseModel<Null>(false, "Xóa thành viên thất bại!");
 	}
 }

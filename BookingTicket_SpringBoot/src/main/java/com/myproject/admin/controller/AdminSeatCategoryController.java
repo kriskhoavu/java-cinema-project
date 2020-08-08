@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.constraints.Null;
-import com.myproject.model.common.BaseRequestResponse;
-import com.myproject.entity.SeatCategory;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.SeatCategory;
 import com.myproject.service.SeatCategoryService;
 
 @Controller
@@ -43,7 +43,7 @@ public class AdminSeatCategoryController {
 			model.addAttribute("category", category);
 			return "seatcategory/add";
 		}
-		BaseRequestResponse<Null> errorModel = seatCategoryService.insert(category);
+		ResponseModel<Null> errorModel = seatCategoryService.insert(category);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("category", category);
@@ -68,7 +68,7 @@ public class AdminSeatCategoryController {
 			model.addAttribute("category", category);
 			return "seatcategory/edit";
 		}
-		BaseRequestResponse<Null> errorModel = seatCategoryService.update(category);
+		ResponseModel<Null> errorModel = seatCategoryService.update(category);
 		if(!errorModel.isStatus()) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("category", category);

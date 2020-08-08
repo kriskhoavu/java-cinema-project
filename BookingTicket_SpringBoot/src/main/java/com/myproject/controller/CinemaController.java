@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myproject.entity.Cinema;
+import com.myproject.model.entity.Cinema;
 import com.myproject.service.CinemaService;
 
 @RestController
