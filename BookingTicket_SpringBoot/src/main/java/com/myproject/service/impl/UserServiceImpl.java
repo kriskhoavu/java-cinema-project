@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.validation.constraints.Null;
 
+import com.myproject.model.common.CONSTANT;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ import com.myproject.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
-
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -64,11 +64,10 @@ public class UserServiceImpl implements UserService{
 	public ResponseModel<Null> insert(RegisterDto model) {
 		
 		if(userRepository.findByEmail(model.getEmail()) != null){
-			return new ResponseModel<Null>(false, "Email đã tồn tại!");
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_FAILED, "EMAIL ALREADY EXISTS");
 		}
 		try {
 			User user = new User();
-			//Ramdom id
 			user.setId(UUID.randomUUID().toString());
 			user.setEmail(model.getEmail());
 			// Hash password
@@ -78,14 +77,14 @@ public class UserServiceImpl implements UserService{
 			user.setPhone(model.getPhone());
 			user.setAddress(model.getAddress());
 			user.setRoleId(model.getRoleId());
-			if(userRepository.save(user) != null) {
-				return new ResponseModel<Null>(true, "Thêm mới thành viên thành công!");
-			}
+
+			userRepository.save(user);
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Thêm mới thành viên thất bại!");
 	}
 
 	@Override
@@ -93,7 +92,7 @@ public class UserServiceImpl implements UserService{
 		try {
 			User user = userRepository.findById(model.getId()).get();
 			if(user == null){
-				return new ResponseModel<Null>(false, "Không tìm thấy thông tin!");
+				return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_WARNING, CONSTANT.API_RESPONSE_STATUS_DESC_NOT_FOUND);
 			}
 			user.setEmail(model.getEmail());
 			user.setFullname(model.getFullname());
@@ -101,24 +100,23 @@ public class UserServiceImpl implements UserService{
 			user.setPhone(model.getPhone());
 			user.setAddress(model.getAddress());
 			user.setRoleId(model.getRoleId());
-			if(userRepository.save(user) != null) {
-				return new ResponseModel<Null>(true, "Cập nhật thành viên thành công!");
-			}
-		}
-		catch (Exception e) {
+
+			userRepository.save(user);
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
+		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Cập nhật thành viên thất bại!");
 	}
 
 	@Override
 	public ResponseModel<Null> delete(String id) {
 		try {
 			userRepository.deleteById(id);
-			return new ResponseModel<Null>(true, "Xóa thành viên thất bại!");
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Xóa thành viên thất bại!");
 	}
 }

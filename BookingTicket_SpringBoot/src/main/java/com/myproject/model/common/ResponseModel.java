@@ -5,22 +5,21 @@ import org.springframework.http.HttpStatus;
 
 @Data
 public class ResponseModel<T> {
-	private T data;
+	private int statusCode;
 	private String message;
-	private boolean status;
-	private HttpStatus httpStatus;
+	private T data;
 
 	public ResponseModel() {
 	}
 
-	public ResponseModel(boolean status, String message) {
-		this.status = status;
+	public ResponseModel(int status, String message) {
+		this.statusCode = status;
 		this.message = message;
 	}
 
-	public ResponseModel(boolean status, String message, T data) {
+	public ResponseModel(int status, String message, T data) {
 		this.data = data;
-		this.status = status;
+		this.statusCode = status;
 		this.message = message;
 	}
 }

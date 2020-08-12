@@ -1,5 +1,6 @@
 package com.myproject.admin.controller;
 
+import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,6 @@ import com.myproject.service.RoleService;
 @Controller
 @RequestMapping("admin/role")
 public class AdminRoleController {
-	
 	@Autowired
 	private RoleService roleService;
 	
@@ -44,7 +44,7 @@ public class AdminRoleController {
 			return "role/add";
 		}
 		ResponseModel<Null> errorModel = roleService.insert(role);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("role", role);
 			return "role/add";
@@ -69,7 +69,7 @@ public class AdminRoleController {
 			return "role/edit";
 		}
 		ResponseModel<Null> errorModel = roleService.update(role);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("role", role);
 			return "role/edit";

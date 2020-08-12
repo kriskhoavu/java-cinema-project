@@ -1,5 +1,6 @@
 package com.myproject.admin.controller;
 
+import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,6 @@ import com.myproject.service.UserService;
 @Controller
 @RequestMapping("admin/user")
 public class AdminUserController {
-
 	@Autowired
 	private UserService userService;
 
@@ -49,7 +49,7 @@ public class AdminUserController {
 			return "user/add";
 		}
 		ResponseModel<Null> errorModel = userService.insert(user);
-		if (!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("user", user);
 			model.addAttribute("roles", roleService.findAll());
@@ -76,7 +76,7 @@ public class AdminUserController {
 			return "user/edit";
 		}
 		ResponseModel<Null> errorModel = userService.update(user);
-		if (!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("user", user);
 			model.addAttribute("roles", roleService.findAll());

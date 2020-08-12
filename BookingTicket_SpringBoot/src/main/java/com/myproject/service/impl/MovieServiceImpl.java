@@ -2,6 +2,7 @@ package com.myproject.service.impl;
 
 import java.util.List;
 
+import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.validation.constraints.Null;
@@ -13,7 +14,6 @@ import com.myproject.service.MovieService;
 
 @Service
 public class MovieServiceImpl implements MovieService{
-
 	@Autowired
 	private MovieRepository movieRepository;
 	
@@ -31,36 +31,36 @@ public class MovieServiceImpl implements MovieService{
 	public ResponseModel<Null> insert(Movie model) {
 		try {
 			movieRepository.save(model);
-			return new ResponseModel<Null>(true, "Thêm mới thành công!");
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Thêm mới thất bại!");
 	}
 
 	@Override
 	public ResponseModel<Null> update(Movie model) {
 		try {
 			if(movieRepository.findById(model.getId()) == null) {
-				return new ResponseModel<Null>(false, "Không tìm thấy dữ liệu phù hợp!");
+				return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_WARNING, CONSTANT.API_RESPONSE_STATUS_DESC_NOT_FOUND);
 			}
 			movieRepository.save(model);
-			return new ResponseModel<Null>(true, "Cập nhật thành công!");
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Cập nhật thất bại!");
 	}
 
 	@Override
 	public ResponseModel<Null> delete(int id) {
 		try {
 			movieRepository.deleteById(id);
-			return new ResponseModel<Null>(true, "Xóa thành công!");
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Xóa thất bại!");
 	}
 
 	@Override

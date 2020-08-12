@@ -2,6 +2,9 @@ package com.myproject.controller;
 
 import java.util.List;
 
+import com.myproject.Util.ResponseUtil;
+import com.myproject.model.common.CONSTANT;
+import com.myproject.model.common.ResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +25,8 @@ public class CinemaController {
 
 	@ResponseBody
 	@GetMapping("all")
-	public ResponseEntity<List<Cinema>> all() {
-		List<Cinema> cinemas = cinemaService.findAll();
-		if (cinemas.isEmpty()) {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<List<Cinema>>(cinemas, HttpStatus.OK);
+	public ResponseEntity<ResponseModel<List<Cinema>>> all() {
+		ResponseModel<List<Cinema>> response = cinemaService.findAll();
+		return new ResponseUtil<List<Cinema>>().createResponse(HttpStatus.OK, response);
 	}
 }

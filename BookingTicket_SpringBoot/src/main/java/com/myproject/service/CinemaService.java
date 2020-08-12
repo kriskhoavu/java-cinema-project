@@ -6,8 +6,8 @@ import com.myproject.model.common.ResponseModel;
 import com.myproject.model.entity.Cinema;
 
 public interface CinemaService {
-	public List<Cinema> findAll();
-	public Cinema findById(int id);
+	public ResponseModel<List<Cinema>> findAll();
+	public ResponseModel<Cinema> findById(int id);
 	public ResponseModel<Null> insert(Cinema model);
 	public ResponseModel<Null> update(Cinema model);
 	public ResponseModel<Null> delete(int id);

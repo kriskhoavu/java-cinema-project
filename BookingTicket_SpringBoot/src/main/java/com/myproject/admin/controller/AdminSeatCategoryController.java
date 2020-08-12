@@ -1,5 +1,6 @@
 package com.myproject.admin.controller;
 
+import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,6 @@ import com.myproject.service.SeatCategoryService;
 @Controller
 @RequestMapping("admin/seatcategory")
 public class AdminSeatCategoryController {
-	
 	@Autowired
 	private SeatCategoryService seatCategoryService;
 	
@@ -44,7 +44,7 @@ public class AdminSeatCategoryController {
 			return "seatcategory/add";
 		}
 		ResponseModel<Null> errorModel = seatCategoryService.insert(category);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("category", category);
 			return "seatcategory/add";
@@ -69,7 +69,7 @@ public class AdminSeatCategoryController {
 			return "seatcategory/edit";
 		}
 		ResponseModel<Null> errorModel = seatCategoryService.update(category);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("category", category);
 			return "seatcategory/edit";

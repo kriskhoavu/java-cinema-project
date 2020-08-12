@@ -1,5 +1,6 @@
 package com.myproject.admin.controller;
 
+import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,6 @@ import com.myproject.service.MovieService;
 @Controller
 @RequestMapping("admin/movie")
 public class AdminMovieController {
-	
 	@Autowired
 	private MovieService movieService;
 	
@@ -44,7 +44,7 @@ public class AdminMovieController {
 			return "movie/add";
 		}
 		ResponseModel<Null> errorModel = movieService.insert(movie);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("movie", movie);
 			return "movie/add";
@@ -69,7 +69,7 @@ public class AdminMovieController {
 			return "movie/edit";
 		}
 		ResponseModel<Null> errorModel = movieService.update(movie);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("movie", movie);
 			return "movie/edit";

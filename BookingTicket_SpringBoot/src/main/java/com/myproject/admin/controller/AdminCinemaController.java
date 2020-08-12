@@ -1,5 +1,6 @@
 package com.myproject.admin.controller;
 
+import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,6 @@ import com.myproject.service.CineplexService;
 @Controller
 @RequestMapping("admin/cinema")
 public class AdminCinemaController {
-	
 	@Autowired
 	private CinemaService cinemaService;
 	
@@ -42,16 +42,14 @@ public class AdminCinemaController {
 	}
 	
 	@PostMapping("add")
-	public String add(Model model, 
-			@Validated @ModelAttribute("cinema") Cinema cinema,
-			BindingResult errors) {
+	public String add(Model model, @Validated @ModelAttribute("cinema") Cinema cinema, BindingResult errors) {
 		if(errors.hasErrors()) {
 			model.addAttribute("cinema", cinema);
 			model.addAttribute("cineplexs", cineplexService.findAll());
 			return "cinema/add";
 		}
 		ResponseModel<Null> errorModel = cinemaService.insert(cinema);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("cinema", cinema);
 			model.addAttribute("cineplexs", cineplexService.findAll());
@@ -79,7 +77,7 @@ public class AdminCinemaController {
 			return "cinema/edit";
 		}
 		ResponseModel<Null> errorModel = cinemaService.update(cinema);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("cineplexs", cineplexService.findAll());
 			return "cinema/edit";

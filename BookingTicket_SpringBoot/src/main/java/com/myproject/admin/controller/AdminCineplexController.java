@@ -1,5 +1,6 @@
 package com.myproject.admin.controller;
 
+import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +45,7 @@ public class AdminCineplexController {
 			return "cineplex/add";
 		}
 		ResponseModel<Null> errorModel = cineplexService.insert(cineplex);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("cineplex", cineplex);
 			return "cineplex/add";
@@ -69,7 +70,7 @@ public class AdminCineplexController {
 			return "cineplex/edit";
 		}
 		ResponseModel<Null> errorModel = cineplexService.update(cineplex);
-		if(!errorModel.isStatus()) {
+		if(errorModel.getStatusCode() != CONSTANT.API_RESPONSE_STATUS_CODE_OK) {
 			model.addAttribute("message", errorModel.getMessage());
 			model.addAttribute("cineplex", cineplex);
 			return "cineplex/edit";

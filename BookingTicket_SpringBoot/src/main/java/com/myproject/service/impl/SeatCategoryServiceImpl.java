@@ -2,6 +2,7 @@ package com.myproject.service.impl;
 
 import java.util.List;
 
+import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.validation.constraints.Null;
@@ -12,7 +13,6 @@ import com.myproject.service.SeatCategoryService;
 
 @Service
 public class SeatCategoryServiceImpl implements SeatCategoryService{
-
 	@Autowired
 	private SeatCategoryRepository seatCategoryRepository;
 	
@@ -30,38 +30,39 @@ public class SeatCategoryServiceImpl implements SeatCategoryService{
 	public ResponseModel<Null> insert(SeatCategory model) {
 		try {
 			if(seatCategoryRepository.findByName(model.getName()) != null) {
-				return new ResponseModel<Null>(false, "Tên này đã được sử dụng!");
+				return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_FAILED, "SEAT ALREADY RESERVED");
 			}
 			seatCategoryRepository.save(model);
-			return new ResponseModel<Null>(true, "Thêm mới thành công!");
+
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Thêm mới thất bại!");
 	}
 
 	@Override
 	public ResponseModel<Null> update(SeatCategory model) {
 		try {
 			if(seatCategoryRepository.findById(model.getId()) == null) {
-				return new ResponseModel<Null>(false, "Không tìm thấy dữ liệu phù hợp!");
+				return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_WARNING, CONSTANT.API_RESPONSE_STATUS_DESC_NOT_FOUND);
 			}
 			seatCategoryRepository.save(model);
-			return new ResponseModel<Null>(true, "Cập nhật thành công!");
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Cập nhật thất bại!");
 	}
 
 	@Override
 	public ResponseModel<Null> delete(int id) {
 		try {
 			seatCategoryRepository.deleteById(id);
-			return new ResponseModel<Null>(true, "Xóa thành công!");
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
-		return new ResponseModel<Null>(false, "Xóa thất bại!");
 	}
 }
