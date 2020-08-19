@@ -34,10 +34,9 @@ public class User {
 	private String roleId;
 	
 	@ManyToOne
-	@JoinColumn(name = "role_id", 
-	insertable = false, updatable = false)
+	@JoinColumn(name = "role_id", insertable = false, updatable = false)
 	private Role role;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user")
 	private Set<Ticket> tickets;
 }

@@ -20,13 +20,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 @EnableWebSecurity
 public class SecurityConfig {
-
 	@Autowired
     private UserDetailsService userDetailsService;
-	
+
 	@Autowired
 	private JWTAuthorizationFilter jwtAuthorizationFilter;
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -43,12 +42,26 @@ public class SecurityConfig {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable()
-            .authorizeRequests().antMatchers("/auth/authenticate").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            
-            http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/auth/login")
+                .loginProcessingUrl("/auth/login")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/admin/user")
+                .failureUrl("/auth/login?error=true")
+                .and()
+                .logout()
+                .logoutUrl("/auth/logout")
+                .logoutSuccessUrl("/auth/login")
+                .deleteCookies("JSESSIONID")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/403");
         }
 
         @Bean
@@ -56,36 +69,17 @@ public class SecurityConfig {
         public AuthenticationManager authenticationManagerBean() throws Exception {
         	return super.authenticationManagerBean();
         }
-		
-
-       /*  @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-            .requestMatchers().antMatchers("/admin/**")
-            .and()
-            .authorizeRequests().anyRequest().hasRole("ADMIN")
-            .and()
-            .httpBasic(); 
-    	http.csrf().disable()
-			.antMatcher("/admin/**")
-				.authorizeRequests()
-				.antMatchers("/admin/**").hasAnyRole("ADMIN")
-				.and()
-			.formLogin()
-				.permitAll()
-				.loginPage("/auth/login")
-				.usernameParameter("email")
-				.passwordParameter("password")
-				.defaultSuccessUrl("/admin/user")
-				.failureUrl("/auth/login?error=true")
-				.and()
-			.logout()
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/auth/login")
-				.deleteCookies("JSESSIONID")
-				.and()
-			.exceptionHandling()
-				.accessDeniedPage("/403");	           
-        } */
     }
 }
+
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception {
+//            http.cors();
+//            http.csrf().disable()
+//            .authorizeRequests().antMatchers("/auth/authenticate").permitAll()
+//            .anyRequest().authenticated()
+//            .and()
+//            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//
+//            http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
+//        }

@@ -19,14 +19,16 @@ import com.myproject.service.CinemaService;
 @RestController
 @RequestMapping("api/cinema")
 public class CinemaController {
-
 	@Autowired
 	private CinemaService cinemaService;
 
+	@Autowired
+	private ResponseUtil responseUtil;
+
 	@ResponseBody
 	@GetMapping("all")
-	public ResponseEntity<ResponseModel<List<Cinema>>> all() {
+	public ResponseEntity all() {
 		ResponseModel<List<Cinema>> response = cinemaService.findAll();
-		return new ResponseUtil<List<Cinema>>().createResponse(HttpStatus.OK, response);
+		return responseUtil.createResponse(HttpStatus.OK, response);
 	}
 }

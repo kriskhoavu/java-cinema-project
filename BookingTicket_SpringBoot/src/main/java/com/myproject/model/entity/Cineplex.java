@@ -12,15 +12,13 @@ import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotBlank;
-
+import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "cineplex")
-@SuppressWarnings("deprecation")
 public class Cineplex {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

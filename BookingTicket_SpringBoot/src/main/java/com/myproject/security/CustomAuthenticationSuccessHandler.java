@@ -10,8 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler{
-
-	public void onAuthenticationSuccess(HttpServletRequest request, 
+	public void onAuthenticationSuccess(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 		
@@ -21,7 +20,5 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		response.setHeader("Location", request.getContextPath() + "/");
 		response.getWriter().flush();
 		response.getWriter().close();
-		
 	}
-
 }

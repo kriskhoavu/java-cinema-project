@@ -18,7 +18,6 @@ import javax.persistence.OneToMany;
 @AllArgsConstructor
 @Entity(name = "seat_categories")
 public class SeatCategory {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

@@ -16,7 +16,6 @@ import com.myproject.repository.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService{
-
 	@Autowired
 	private UserRepository userRepository;
 	

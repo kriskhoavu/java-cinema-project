@@ -19,6 +19,8 @@ import com.myproject.model.entity.Cinema;
 import com.myproject.service.CinemaService;
 import com.myproject.service.CineplexService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("admin/cinema")
 public class AdminCinemaController {
@@ -30,7 +32,8 @@ public class AdminCinemaController {
 	
 	@GetMapping("")
 	public String index(Model model) {
-		model.addAttribute("cinemas", cinemaService.findAll());
+		ResponseModel response = cinemaService.findAll();
+		model.addAttribute("cinemas", response.getData());
 		return "cinema/index";
 	}
 	

@@ -1,49 +1,19 @@
 package com.myproject.model.dto;
 
-import org.hibernate.validator.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.validation.constraints.NotBlank;
 
-@SuppressWarnings("deprecation")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoleDto {
-	
 	private String id;
 	
-	@NotBlank(message = "Tên quyền không đượ trống!")
+	@NotBlank(message = "Role name is required.")
 	private String name;
 	
-	@NotBlank(message = "Mô tả không được trống!")
+	@NotBlank(message = "Role description is required.")
 	private String description;
-
-	public RoleDto() {
-	}
-
-	public RoleDto(String id, String name, String description) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.myproject.Util.ResponseUtil;
 import com.myproject.model.common.CONSTANT;
 import org.springframework.beans.BeanUtils;
 import javax.validation.constraints.Null;
@@ -27,18 +28,15 @@ public class RoleServiceImpl implements RoleService {
 		List<Role> roles = this.roleRepository.findAll();
 		List<RoleDto> rolesDto = new ArrayList<RoleDto>();
 
-		BeanUtils.copyProperties(roles, rolesDto);
+		roles.forEach(role -> {
+			rolesDto.add(toModel(role));
+		});
 		return rolesDto;
 	}
 
 	@Override
 	public RoleDto findById(String id) {
-		RoleDto dto = new RoleDto();
-		Role role = roleRepository.findById(id).get();
-		dto.setId(role.getId());
-		dto.setName(role.getName());
-		dto.setDescription(role.getDescription());
-		return dto;
+		return roleRepository.findById(id).map(role -> toModel(role)).orElse(null);
 	}
 
 	@Override
@@ -93,5 +91,11 @@ public class RoleServiceImpl implements RoleService {
 			e.printStackTrace();
 			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
 		}
+	}
+
+	private RoleDto toModel(Role role){
+		RoleDto model = new RoleDto();
+		BeanUtils.copyProperties(role, model);
+		return model;
 	}
 }

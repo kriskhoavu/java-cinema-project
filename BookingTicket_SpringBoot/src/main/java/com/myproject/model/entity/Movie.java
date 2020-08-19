@@ -22,7 +22,6 @@ import javax.persistence.TemporalType;
 @AllArgsConstructor
 @Entity(name = "movies")
 public class Movie {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
