@@ -19,7 +19,8 @@
 					</div>
 					<div class="form-group">
 						<label>Logo</label> 
-						<input type="hidden" th:field="*{logo}" />
+						<input type="hidden" th:field="*{logo}"/>
+						<input type="hidden" id="path" th:value="@{${uploadUrlAPI}}"/>
 						<input type="file" id="fileUpload" data-target="#logo" data-img="#imgdp" class="form-control"/>
 						<span class="text-danger" th:if="${#fields.hasErrors('logo')}" th:errors="*{logo}"></span>
 						<img class="mt-2" th:src="@{${cineplex.logo}}" id="imgdp" height="100" />

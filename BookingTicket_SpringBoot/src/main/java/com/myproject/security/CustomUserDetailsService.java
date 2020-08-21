@@ -1,8 +1,7 @@
 package com.myproject.security;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
+import com.myproject.model.entity.User;
+import com.myproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.myproject.model.entity.User;
-import com.myproject.repository.UserRepository;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService{

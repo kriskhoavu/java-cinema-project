@@ -1,16 +1,15 @@
 package com.myproject.service.impl;
 
-import java.util.List;
-
 import com.myproject.model.common.CONSTANT;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import javax.validation.constraints.Null;
-
 import com.myproject.model.common.ResponseModel;
 import com.myproject.model.entity.Movie;
 import com.myproject.repository.MovieRepository;
 import com.myproject.service.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.validation.constraints.Null;
+import java.util.List;
 
 @Service
 public class MovieServiceImpl implements MovieService{

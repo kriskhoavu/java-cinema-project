@@ -1,20 +1,18 @@
 package com.myproject.service.impl;
 
-import java.util.List;
-
-import javax.validation.constraints.Null;
-
 import com.myproject.model.common.CONSTANT;
+import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.Cineplex;
+import com.myproject.repository.CineplexRepository;
+import com.myproject.service.CineplexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.myproject.model.common.ResponseModel;
-import com.myproject.model.entity.Cineplex;
-import com.myproject.repository.CineplexRepository;
-import com.myproject.service.CineplexService;
+import javax.validation.constraints.Null;
+import java.util.List;
 
 @SuppressWarnings("deprecation")
 @Service

@@ -1,10 +1,9 @@
 package com.myproject.controller;
 
-import java.util.List;
-
 import com.myproject.Util.ResponseUtil;
-import com.myproject.model.common.CONSTANT;
 import com.myproject.model.common.ResponseModel;
+import com.myproject.model.entity.Cinema;
+import com.myproject.service.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myproject.model.entity.Cinema;
-import com.myproject.service.CinemaService;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/cinema")

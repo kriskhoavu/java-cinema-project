@@ -1,16 +1,6 @@
 package com.myproject.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import javax.validation.constraints.Null;
-
 import com.myproject.model.common.CONSTANT;
-import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.myproject.model.common.ResponseModel;
 import com.myproject.model.dto.RegisterDto;
 import com.myproject.model.dto.RoleDto;
@@ -19,6 +9,14 @@ import com.myproject.model.entity.Role;
 import com.myproject.model.entity.User;
 import com.myproject.repository.UserRepository;
 import com.myproject.service.UserService;
+import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.validation.constraints.Null;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService{

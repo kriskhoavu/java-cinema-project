@@ -1,7 +1,6 @@
 package com.myproject.model.common;
 
 import lombok.Data;
-import org.springframework.http.HttpStatus;
 
 @Data
 public class ResponseModel<T> {

@@ -1,10 +1,10 @@
 package com.myproject.service;
 
-import java.util.List;
-
 import com.myproject.model.common.ResponseModel;
 import com.myproject.model.entity.Movie;
+
 import javax.validation.constraints.Null;
+import java.util.List;
 
 public interface MovieService {
 	public List<Movie> findAll();

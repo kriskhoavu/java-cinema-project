@@ -1,22 +1,19 @@
 package com.myproject.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import com.myproject.Util.ResponseUtil;
 import com.myproject.model.common.CONSTANT;
-import org.springframework.beans.BeanUtils;
-import javax.validation.constraints.Null;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.myproject.model.common.ResponseModel;
 import com.myproject.model.dto.RoleDto;
 import com.myproject.model.entity.Role;
 import com.myproject.repository.RoleRepository;
 import com.myproject.service.RoleService;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.validation.constraints.Null;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RoleServiceImpl implements RoleService {
