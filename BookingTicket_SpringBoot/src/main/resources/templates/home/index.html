@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-	layout:decorator="layout/default">
+<html layout:decorator="layout/default"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Trang chủ nè</title>
+    <title>Trang chủ nè</title>
 </head>
 <body>
-	<section layout:fragment="content">
-		<div class="row">
-			<div class="col-md-6">
-				<canvas id="myChart" width="400" height="400"></canvas>
-			</div>
-			<div class="col-md-6">
-				<canvas id="myChart2" width="400" height="400"></canvas>
-			</div>
-			<div class="col-md-1"></div>
-		</div>
-	</section>
+<section layout:fragment="content">
+    <div class="row">
+        <div class="col-md-6">
+            <canvas height="400" id="myChart" width="400"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas height="400" id="myChart2" width="400"></canvas>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</section>
 
-	<th:block layout:fragment="scripts">
-		<script th:src="@{/js/chart.min.js}"></script>
-		<script th:src="@{/js/custom-chart.js}"></script>
-	</th:block>
+<th:block layout:fragment="scripts">
+    <script th:src="@{/js/chart.min.js}"></script>
+    <script th:src="@{/js/custom-chart.js}"></script>
+</th:block>
 </body>
 </html>

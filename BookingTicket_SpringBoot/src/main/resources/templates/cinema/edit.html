@@ -1,65 +1,68 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-	layout:decorator="layout/default">
+<html layout:decorator="layout/default"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Cập nhật rạp chiếu phim</title>
+    <title>Cập nhật rạp chiếu phim</title>
 </head>
 <body>
-	<section layout:fragment="content">
-		<h3 class="mb-4 text-center">Cập nhật rạp chiếu phim</h3>
-		<div class="text-center text-danger" th:text="${message}"></div>
-		<form method="post" th:object="${cinema}" th:action="@{/admin/cinema/edit}" action="#">
-			<div class="row">
-				<div class="col-md-6">
-					<input type="hidden" th:field="*{id}"/>
-					<div class="form-group">
-						<label>Cụm rạp</label> 
-						<select th:field="*{cineplexId}" class="form-control">
-						    <option th:each="item : ${cineplexs}" th:value="${item.id}" th:text="${item.name}"
-						      th:selected="${item.id == cineplexId}">
-						     </option>
-						</select>
-						<span class="text-danger" th:if="${#fields.hasErrors('cineplexId')}" th:errors="*{cineplexId}"></span>
-					</div>
-					<div class="form-group">
-						<label>Địa chỉ</label> 
-						<input type="text" th:field="*{address}" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
-					</div>
-					<div class="form-group">
-						<label>Điện thoại</label> 
-						<input type="text" th:field="*{phone}" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label>Tên rạp</label> 
-						<input type="text" th:field="*{name}" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-					</div>
-					<div class="form-group">
-						<label>Hình</label> 
-						<input type="hidden" th:field="*{image}" />
-						<input type="file" id="fileUpload" data-target="#image" data-img="#imgdp" class="form-control"/>
-						<span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
-						<img class="mt-2" th:src="@{${cinema.image}}" id="imgdp" height="100" />
-					</div>
-				</div>
-				<div class="col-12">
-					<div class="form-group">
-						<label>Mô tả</label> 
-						<textarea rows="5" th:field="*{description}" class="form-control"></textarea>
-						<span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-success">Lưu lại</button>
-						<a class="btn btn-secondary" th:href="@{/admin/cinema}">Quay lại</a>
-					</div>
-				</div>
-			</div>
-		</form>
-	</section>
+<section layout:fragment="content">
+    <h3 class="mb-4 text-center">Cập nhật rạp chiếu phim</h3>
+    <div class="text-center text-danger" th:text="${message}"></div>
+    <form action="#" method="post" th:action="@{/admin/cinema/edit}" th:object="${cinema}">
+        <div class="row">
+            <div class="col-md-6">
+                <input th:field="*{id}" type="hidden"/>
+                <div class="form-group">
+                    <label>Cụm rạp</label>
+                    <select class="form-control" th:field="*{cineplexId}">
+                        <option th:each="item : ${cineplexs}" th:selected="${item.id == cineplexId}"
+                                th:text="${item.name}"
+                                th:value="${item.id}">
+                        </option>
+                    </select>
+                    <span class="text-danger" th:errors="*{cineplexId}"
+                          th:if="${#fields.hasErrors('cineplexId')}"></span>
+                </div>
+                <div class="form-group">
+                    <label>Địa chỉ</label>
+                    <input class="form-control" th:field="*{address}" type="text"/>
+                    <span class="text-danger" th:errors="*{address}" th:if="${#fields.hasErrors('address')}"></span>
+                </div>
+                <div class="form-group">
+                    <label>Điện thoại</label>
+                    <input class="form-control" th:field="*{phone}" type="text"/>
+                    <span class="text-danger" th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tên rạp</label>
+                    <input class="form-control" th:field="*{name}" type="text"/>
+                    <span class="text-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
+                </div>
+                <div class="form-group">
+                    <label>Hình</label>
+                    <input th:field="*{image}" type="hidden"/>
+                    <input class="form-control" data-img="#imgdp" data-target="#image" id="fileUpload" type="file"/>
+                    <span class="text-danger" th:errors="*{image}" th:if="${#fields.hasErrors('image')}"></span>
+                    <img class="mt-2" height="100" id="imgdp" th:src="@{${cinema.image}}"/>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea class="form-control" rows="5" th:field="*{description}"></textarea>
+                    <span class="text-danger" th:errors="*{description}"
+                          th:if="${#fields.hasErrors('description')}"></span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Lưu lại</button>
+                    <a class="btn btn-secondary" th:href="@{/admin/cinema}">Quay lại</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
 </body>
 </html>

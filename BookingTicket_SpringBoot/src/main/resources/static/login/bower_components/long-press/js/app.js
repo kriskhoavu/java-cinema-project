@@ -1,3 +1,3 @@
-$(function(){
-	$('.long-press').first().longPress();
+$(function () {
+    $('.long-press').first().longPress();
 });

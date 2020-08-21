@@ -1,5 +1,5 @@
 "use strict";
-$(document).ready(function() {
+$(document).ready(function () {
     function ratingEnable() {
         $('#example-1to10').barrating('show', {
             theme: 'bars-1to10',
@@ -24,7 +24,7 @@ $(document).ready(function() {
             showSelectedRating: false,
             allowEmpty: true,
             emptyValue: '-- no rating selected --',
-            onSelect: function(value, text) {
+            onSelect: function (value, text) {
                 alert('Selected rating: ' + value);
             }
         });
@@ -62,7 +62,7 @@ $(document).ready(function() {
             .find('span')
             .html(currentRating);
 
-        $('.stars-example-fontawesome-o .clear-rating').on('click', function(event) {
+        $('.stars-example-fontawesome-o .clear-rating').on('click', function (event) {
             event.preventDefault();
 
             $('#example-fontawesome-o')
@@ -73,7 +73,7 @@ $(document).ready(function() {
             theme: 'fontawesome-stars-o',
             showSelectedRating: false,
             initialRating: currentRating,
-            onSelect: function(value, text) {
+            onSelect: function (value, text) {
                 if (!value) {
                     $('#example-fontawesome-o')
                         .barrating('clear');
@@ -87,7 +87,7 @@ $(document).ready(function() {
                         .html(value);
                 }
             },
-            onClear: function(value, text) {
+            onClear: function (value, text) {
                 $('.stars-example-fontawesome-o')
                     .find('.current-rating')
                     .removeClass('hidden')
@@ -102,7 +102,7 @@ $(document).ready(function() {
         $('select').barrating('destroy');
     }
 
-    $('.rating-enable').on('click',function(event) {
+    $('.rating-enable').on('click', function (event) {
         event.preventDefault();
 
         ratingEnable();
@@ -111,7 +111,7 @@ $(document).ready(function() {
         $('.rating-disable').removeClass('deactivated');
     });
 
-    $('.rating-disable').on('click',function(event) {
+    $('.rating-disable').on('click', function (event) {
         event.preventDefault();
 
         ratingDisable();

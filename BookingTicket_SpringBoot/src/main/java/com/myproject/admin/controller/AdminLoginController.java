@@ -18,34 +18,34 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("auth")
 public class AdminLoginController {
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-	@Autowired
-	private CustomUserDetailsService userdetDetailsService;
+    @Autowired
+    private CustomUserDetailsService userdetDetailsService;
 
-	@Autowired
-	private JWTUtil jwtUtil;
+    @Autowired
+    private JWTUtil jwtUtil;
 
-	@GetMapping("login")
-	public String login(@RequestParam(required = false) String error, Model model) {
-		if (error != null && error.equals("true")) {
-			model.addAttribute("message", "Wrong username or password.");
-		}
-		return "user/login";
-	}
+    @GetMapping("login")
+    public String login(@RequestParam(required = false) String error, Model model) {
+        if (error != null && error.equals("true")) {
+            model.addAttribute("message", "Wrong username or password.");
+        }
+        return "user/login";
+    }
 
-	@PostMapping("authenticate")
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest auth) throws Exception {
-		try {
-			authenticationManager
-					.authenticate(new UsernamePasswordAuthenticationToken(auth.getEmail(), auth.getPassword()));
-		} catch (BadCredentialsException e) {
-			throw new Exception("Incorrect username or password", e);
-		}
-		final UserDetails userDetails = userdetDetailsService.loadUserByUsername(auth.getEmail());
-		final String jwt = jwtUtil.generateToken(userDetails);
+    @PostMapping("authenticate")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest auth) throws Exception {
+        try {
+            authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(auth.getEmail(), auth.getPassword()));
+        } catch (BadCredentialsException e) {
+            throw new Exception("Incorrect username or password", e);
+        }
+        final UserDetails userDetails = userdetDetailsService.loadUserByUsername(auth.getEmail());
+        final String jwt = jwtUtil.generateToken(userDetails);
 
-		return ResponseEntity.ok(new AuthenticationResponse(jwt));
-	}
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
 }

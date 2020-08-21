@@ -1,14 +1,14 @@
 package com.myproject.model.common;
 
 public class AuthenticationResponse {
-	
-	private final String jwt;
 
-	public AuthenticationResponse(String jwt) {
-		this.jwt = jwt;
-	}
+    private final String jwt;
 
-	public String getJwt() {
-		return this.jwt;
-	}
+    public AuthenticationResponse(String jwt) {
+        this.jwt = jwt;
+    }
+
+    public String getJwt() {
+        return this.jwt;
+    }
 }

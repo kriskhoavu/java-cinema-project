@@ -1,5 +1,5 @@
 $(document).ready(
-    function() {
+    function () {
         $('#fileUpload').change((event) => {
             var files = event.target.files;
 
@@ -8,5 +8,5 @@ $(document).ready(
 
             var path = $("#path").val();
         });
-     }
+    }
 );

@@ -15,13 +15,13 @@ import java.util.List;
 @RestController
 @RequestMapping("api/movie")
 public class MovieController {
-	
-	@Autowired
-	private MovieService movieService;
-	
-	@GetMapping("playing/{isPlaying}")
-	public Object playing(@PathVariable boolean isPlaying) {
-		return new ResponseEntity<List<Movie>>(
-				movieService.findMoviePlaying(isPlaying), HttpStatus.OK);
-	}
+
+    @Autowired
+    private MovieService movieService;
+
+    @GetMapping("playing/{isPlaying}")
+    public Object playing(@PathVariable boolean isPlaying) {
+        return new ResponseEntity<List<Movie>>(
+                movieService.findMoviePlaying(isPlaying), HttpStatus.OK);
+    }
 }

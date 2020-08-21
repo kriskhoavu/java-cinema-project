@@ -1,4 +1,3 @@
-
 package com.myproject.security;
 
 import io.jsonwebtoken.SignatureException;
@@ -19,47 +18,47 @@ import java.io.IOException;
 
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
-	private final String TOKEN_PREFIX = "Bearer ";
-	private final String HEADER_STRING = "Authorization";
+    private final String TOKEN_PREFIX = "Bearer ";
+    private final String HEADER_STRING = "Authorization";
 
-	@Autowired
-	private UserDetailsService _userDetailsService;
+    @Autowired
+    private UserDetailsService _userDetailsService;
 
-	@Autowired
-	private JWTUtil _jwtUtil;
+    @Autowired
+    private JWTUtil _jwtUtil;
 
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-		final String header = request.getHeader(HEADER_STRING);
+        final String header = request.getHeader(HEADER_STRING);
 
-		if (header != null && header.startsWith(TOKEN_PREFIX)) {
-			UsernamePasswordAuthenticationToken authenticationToken = getAuthenticationtoken(request, header);
+        if (header != null && header.startsWith(TOKEN_PREFIX)) {
+            UsernamePasswordAuthenticationToken authenticationToken = getAuthenticationtoken(request, header);
 
-			authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-			SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-		}
-		chain.doFilter(request, response);
-	}
+            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        }
+        chain.doFilter(request, response);
+    }
 
-	private UsernamePasswordAuthenticationToken getAuthenticationtoken(HttpServletRequest request, String header) {
-		try {
-			String token = _jwtUtil.getTokenFromHeader(header);
-			String username = _jwtUtil.extractUsername(token);
+    private UsernamePasswordAuthenticationToken getAuthenticationtoken(HttpServletRequest request, String header) {
+        try {
+            String token = _jwtUtil.getTokenFromHeader(header);
+            String username = _jwtUtil.extractUsername(token);
 
-			if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-				UserDetails userDetails = _userDetailsService.loadUserByUsername(username);
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = _userDetailsService.loadUserByUsername(username);
 
-				if(_jwtUtil.validateToken(token, userDetails)) {
-					return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-				}
-			}
-			return null;
-		} catch (SignatureException e) {
-			System.out.println("Invalid JWT signature.");
-			e.printStackTrace();
-			return null;
-		}
-	}
+                if (_jwtUtil.validateToken(token, userDetails)) {
+                    return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                }
+            }
+            return null;
+        } catch (SignatureException e) {
+            System.out.println("Invalid JWT signature.");
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

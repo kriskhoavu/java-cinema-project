@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-	layout:decorator="layout/default">
+<html layout:decorator="layout/default"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Cập nhật loại ghế</title>
+    <title>Cập nhật loại ghế</title>
 </head>
 <body>
-	<section layout:fragment="content">
-		<h3 class="mb-4 text-center">Cập nhật loại ghế</h3>
-		<div class="text-center text-danger" th:text="${message}"></div>
-		<form method="post" th:object="${category}" th:action="@{/admin/seatcategory/edit}" action="#">
-			<div class="row">
-				<div class="col-md-6 m-auto">
-					<input type="hidden" th:field="*{id}" />
-					<div class="form-group">
-						<label>Tên quyền</label> 
-						<input type="text" th:field="*{name}" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-success">Lưu lại</button>
-						<a class="btn btn-secondary" th:href="@{/admin/seatcategory}">Quay lại</a>
-					</div>
-				</div>
-			</div>
-		</form>
-	</section>
+<section layout:fragment="content">
+    <h3 class="mb-4 text-center">Cập nhật loại ghế</h3>
+    <div class="text-center text-danger" th:text="${message}"></div>
+    <form action="#" method="post" th:action="@{/admin/seatcategory/edit}" th:object="${category}">
+        <div class="row">
+            <div class="col-md-6 m-auto">
+                <input th:field="*{id}" type="hidden"/>
+                <div class="form-group">
+                    <label>Tên quyền</label>
+                    <input class="form-control" th:field="*{name}" type="text"/>
+                    <span class="text-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Lưu lại</button>
+                    <a class="btn btn-secondary" th:href="@{/admin/seatcategory}">Quay lại</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
 </body>
 </html>

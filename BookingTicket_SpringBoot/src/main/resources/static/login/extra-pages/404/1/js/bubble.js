@@ -1,6 +1,10 @@
 'use strict';
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
 
 var Bubbles = function () {
     function Bubbles(_settings) {
@@ -126,7 +130,10 @@ var rand = function rand(min, max) {
     return Math.random() * (max - min) + min;
 };
 var onresize = function onresize() {
-    oBubbles.canvasbg.width = window.innerWidth;oBubbles.canvasbg.height = window.innerHeight;oBubbles.canvas.width = window.innerWidth;oBubbles.canvas.height = window.innerHeight;
+    oBubbles.canvasbg.width = window.innerWidth;
+    oBubbles.canvasbg.height = window.innerHeight;
+    oBubbles.canvas.width = window.innerWidth;
+    oBubbles.canvas.height = window.innerHeight;
 };
 var oBubbles = undefined;
 var init = function init() {

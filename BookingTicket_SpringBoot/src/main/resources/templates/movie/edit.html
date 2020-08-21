@@ -1,54 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-	layout:decorator="layout/default">
+<html layout:decorator="layout/default"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Thêm mới phim</title>
+    <title>Thêm mới phim</title>
 </head>
 <body>
-	<section layout:fragment="content">
-		<h3 class="mb-4 text-center">Thêm mới phim</h3>
-		<div class="text-center text-danger" th:text="${message}"></div>
-		<form method="post" th:object="${movie}" th:action="@{/admin/movie/edit}" action="#">
-			<div class="row">
-				<div class="col-md-6">
-					<input type="hidden" th:field="*{id}"/>
-					<div class="form-group">
-						<label>Tên phim</label> 
-						<input type="text" th:field="*{name}" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-					</div>
-					<div class="form-group">
-						<label>Hình</label> 
-						<input type="text" th:field="*{image}" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label>Ngày chiếu</label> 
-						<input type="text" th:field="*{openDate}" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('openDate')}" th:errors="*{openDate}"></span>
-					</div>
-					<div class="form-group">
-						<label>Trailer</label> 
-						<input type="text" th:field="*{trailer}" class="form-control" />
-						<span class="text-danger" th:if="${#fields.hasErrors('trailer')}" th:errors="*{trailer}"></span>
-					</div>
-				</div>
-				<div class="col-12">
-					<div class="form-group">
-						<label>Thông tin phim</label> 
-						<textarea rows="5" th:field="*{description}" class="form-control"></textarea>
-						<span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-					</div>
-				</div>
-				<div class="col-12 mt-3">
-					<button type="submit" class="btn btn-success">Lưu lại</button>
-					<a class="btn btn-secondary" th:href="@{/admin/movie}">Quay lại</a>
-				</div>
-			</div>
-		</form>
-	</section>
+<section layout:fragment="content">
+    <h3 class="mb-4 text-center">Thêm mới phim</h3>
+    <div class="text-center text-danger" th:text="${message}"></div>
+    <form action="#" method="post" th:action="@{/admin/movie/edit}" th:object="${movie}">
+        <div class="row">
+            <div class="col-md-6">
+                <input th:field="*{id}" type="hidden"/>
+                <div class="form-group">
+                    <label>Tên phim</label>
+                    <input class="form-control" th:field="*{name}" type="text"/>
+                    <span class="text-danger" th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></span>
+                </div>
+                <div class="form-group">
+                    <label>Hình</label>
+                    <input class="form-control" th:field="*{image}" type="text"/>
+                    <span class="text-danger" th:errors="*{image}" th:if="${#fields.hasErrors('image')}"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Ngày chiếu</label>
+                    <input class="form-control" th:field="*{openDate}" type="text"/>
+                    <span class="text-danger" th:errors="*{openDate}" th:if="${#fields.hasErrors('openDate')}"></span>
+                </div>
+                <div class="form-group">
+                    <label>Trailer</label>
+                    <input class="form-control" th:field="*{trailer}" type="text"/>
+                    <span class="text-danger" th:errors="*{trailer}" th:if="${#fields.hasErrors('trailer')}"></span>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label>Thông tin phim</label>
+                    <textarea class="form-control" rows="5" th:field="*{description}"></textarea>
+                    <span class="text-danger" th:errors="*{description}"
+                          th:if="${#fields.hasErrors('description')}"></span>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <button class="btn btn-success" type="submit">Lưu lại</button>
+                <a class="btn btn-secondary" th:href="@{/admin/movie}">Quay lại</a>
+            </div>
+        </div>
+    </form>
+</section>
 </body>
 </html>

@@ -1,10 +1,10 @@
-#side-bar{
+#side-bar {
     width: 250px;
     min-height: 100vh;
     background: #446084;
 }
 
-#side-bar .logo a{
+#side-bar .logo a {
     font-weight: bold;
     color: #fff;
     font-size: 21px;
@@ -12,17 +12,20 @@
     display: block;
     text-decoration: none;
 }
-#side-bar ul li a{
+
+#side-bar ul li a {
     background: transparent;
     padding: 7px 15px;
     color: #fff;
     display: block;
     text-decoration: none;
 }
-#side-bar ul li:hover{
+
+#side-bar ul li:hover {
     background: #ccc;
 }
-#side-bar ul li.dashboard{
+
+#side-bar ul li.dashboard {
     font-weight: bold;
     text-transform: uppercase;
     background: #9368d8;
@@ -30,6 +33,6 @@
     color: #f2f2f2;
 }
 
-#admin-wrapper{
+#admin-wrapper {
     width: calc(100% - 250px);
 }

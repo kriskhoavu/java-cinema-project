@@ -12,57 +12,57 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 @Service
-public class SeatCategoryServiceImpl implements SeatCategoryService{
-	@Autowired
-	private SeatCategoryRepository seatCategoryRepository;
-	
-	@Override
-	public List<SeatCategory> findAll() {
-		return seatCategoryRepository.findAll();
-	}
+public class SeatCategoryServiceImpl implements SeatCategoryService {
+    @Autowired
+    private SeatCategoryRepository seatCategoryRepository;
 
-	@Override
-	public SeatCategory findById(int id) {
-		return seatCategoryRepository.findById(id).get();
-	}
+    @Override
+    public List<SeatCategory> findAll() {
+        return seatCategoryRepository.findAll();
+    }
 
-	@Override
-	public ResponseModel<Null> insert(SeatCategory model) {
-		try {
-			if(seatCategoryRepository.findByName(model.getName()) != null) {
-				return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_FAILED, "SEAT ALREADY RESERVED");
-			}
-			seatCategoryRepository.save(model);
+    @Override
+    public SeatCategory findById(int id) {
+        return seatCategoryRepository.findById(id).get();
+    }
 
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
-		}
-	}
+    @Override
+    public ResponseModel<Null> insert(SeatCategory model) {
+        try {
+            if (seatCategoryRepository.findByName(model.getName()) != null) {
+                return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_FAILED, "SEAT ALREADY RESERVED");
+            }
+            seatCategoryRepository.save(model);
 
-	@Override
-	public ResponseModel<Null> update(SeatCategory model) {
-		try {
-			if(seatCategoryRepository.findById(model.getId()) == null) {
-				return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_WARNING, CONSTANT.API_RESPONSE_STATUS_DESC_NOT_FOUND);
-			}
-			seatCategoryRepository.save(model);
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
-		}
-	}
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
+        }
+    }
 
-	@Override
-	public ResponseModel<Null> delete(int id) {
-		try {
-			seatCategoryRepository.deleteById(id);
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
-		}
-	}
+    @Override
+    public ResponseModel<Null> update(SeatCategory model) {
+        try {
+            if (seatCategoryRepository.findById(model.getId()) == null) {
+                return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_WARNING, CONSTANT.API_RESPONSE_STATUS_DESC_NOT_FOUND);
+            }
+            seatCategoryRepository.save(model);
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseModel<Null> delete(int id) {
+        try {
+            seatCategoryRepository.deleteById(id);
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
+        }
+    }
 }

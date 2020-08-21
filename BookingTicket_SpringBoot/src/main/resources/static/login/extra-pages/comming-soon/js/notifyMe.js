@@ -3,13 +3,13 @@
  Copyright (c)2014 Sergey Serafimovich
  Licensed under The MIT License.
 */
-(function(e) {
-    e.fn.notifyMe = function(t) {
+(function (e) {
+    e.fn.notifyMe = function (t) {
         var r = e(this);
         var i = e(this).find("input[name=email]");
         var s = e(this).attr("action");
         var o = e(this).find(".note");
-        e(this).on("submit", function(t) {
+        e(this).on("submit", function (t) {
             t.preventDefault();
             var h = i.val();
             var p = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -25,7 +25,7 @@
                         email: h
                     },
                     dataType: "json",
-                    error: function(e) {
+                    error: function (e) {
                         o.hide();
                         $(".fa-spinner").addClass("opacity-0").removeClass("fa-spin");
                         $(".block-message").addClass("show-block-error").removeClass("show-block-valid");
@@ -35,7 +35,7 @@
                             $(".message").html('<p class="notify-valid">Oops. Looks like something went wrong.<br>Please try again later.</p>').fadeIn();
                         }
                     }
-                }).done(function(e) {
+                }).done(function (e) {
                     o.hide();
                     if (e.status == "success") {
                         $(".fa-spinner").addClass("opacity-0").removeClass("fa-spin");
@@ -61,13 +61,12 @@
             }
 
             // Reset and hide all messages on .keyup()
-            $("#notifyMe input").keyup(function() {
+            $("#notifyMe input").keyup(function () {
                 $(".block-message").addClass("").removeClass("show-block-valid show-block-error");
                 $(".message").fadeOut();
             });
         })
     }
 
-    
 
 })(jQuery)

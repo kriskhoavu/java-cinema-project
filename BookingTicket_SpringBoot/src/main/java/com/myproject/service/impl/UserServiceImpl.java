@@ -19,102 +19,101 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class UserServiceImpl implements UserService{
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Override
-	public List<UserDto> findAll() {
-		List<UserDto> userDtos = new ArrayList<UserDto>();
-		List<User> users = userRepository.findAll();
-		for(User item : users) {
-			UserDto userDto = new UserDto();
-			userDto.setId(item.getId());
-			userDto.setEmail(item.getEmail());
-			userDto.setFullname(item.getFullname());
-			userDto.setAvatar(item.getAvatar());
-			userDto.setPhone(item.getPhone());
-			userDto.setAddress(item.getAddress());
-			userDtos.add(userDto);
-		}
-		return userDtos;
-	}
+public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserRepository userRepository;
 
-	@Override
-	public UserDto findById(String id) {
-		UserDto userDto = new UserDto();
-		User user = userRepository.findById(id).get();
-		userDto.setId(user.getId());
-		userDto.setEmail(user.getEmail());
-		userDto.setFullname(user.getFullname());
-		userDto.setAvatar(user.getAvatar());
-		userDto.setPhone(user.getPhone());
-		userDto.setAddress(user.getAddress());
-		userDto.setRoleId(user.getRoleId());
-		
-		Role role = user.getRole();
-		userDto.setRole(new RoleDto(role.getId(), role.getName(), role.getDescription()));
-		
-		return userDto;
-	}
+    @Override
+    public List<UserDto> findAll() {
+        List<UserDto> userDtos = new ArrayList<UserDto>();
+        List<User> users = userRepository.findAll();
+        for (User item : users) {
+            UserDto userDto = new UserDto();
+            userDto.setId(item.getId());
+            userDto.setEmail(item.getEmail());
+            userDto.setFullname(item.getFullname());
+            userDto.setAvatar(item.getAvatar());
+            userDto.setPhone(item.getPhone());
+            userDto.setAddress(item.getAddress());
+            userDtos.add(userDto);
+        }
+        return userDtos;
+    }
 
-	@Override
-	public ResponseModel<Null> insert(RegisterDto model) {
-		
-		if(userRepository.findByEmail(model.getEmail()) != null){
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_FAILED, "EMAIL ALREADY EXISTS");
-		}
-		try {
-			User user = new User();
-			user.setId(UUID.randomUUID().toString());
-			user.setEmail(model.getEmail());
-			// Hash password
-			user.setPassword(BCrypt.hashpw(model.getPassword(), BCrypt.gensalt(12)));
-			user.setFullname(model.getFullname());
-			user.setAvatar(model.getAvatar());
-			user.setPhone(model.getPhone());
-			user.setAddress(model.getAddress());
-			user.setRoleId(model.getRoleId());
+    @Override
+    public UserDto findById(String id) {
+        UserDto userDto = new UserDto();
+        User user = userRepository.findById(id).get();
+        userDto.setId(user.getId());
+        userDto.setEmail(user.getEmail());
+        userDto.setFullname(user.getFullname());
+        userDto.setAvatar(user.getAvatar());
+        userDto.setPhone(user.getPhone());
+        userDto.setAddress(user.getAddress());
+        userDto.setRoleId(user.getRoleId());
 
-			userRepository.save(user);
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
-		}
-	}
+        Role role = user.getRole();
+        userDto.setRole(new RoleDto(role.getId(), role.getName(), role.getDescription()));
 
-	@Override
-	public ResponseModel<Null> update(UserDto model) {
-		try {
-			User user = userRepository.findById(model.getId()).get();
-			if(user == null){
-				return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_WARNING, CONSTANT.API_RESPONSE_STATUS_DESC_NOT_FOUND);
-			}
-			user.setEmail(model.getEmail());
-			user.setFullname(model.getFullname());
-			user.setAvatar(model.getAvatar());
-			user.setPhone(model.getPhone());
-			user.setAddress(model.getAddress());
-			user.setRoleId(model.getRoleId());
+        return userDto;
+    }
 
-			userRepository.save(user);
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
-		}
-	}
+    @Override
+    public ResponseModel<Null> insert(RegisterDto model) {
 
-	@Override
-	public ResponseModel<Null> delete(String id) {
-		try {
-			userRepository.deleteById(id);
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
-		}
-	}
+        if (userRepository.findByEmail(model.getEmail()) != null) {
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_FAILED, "EMAIL ALREADY EXISTS");
+        }
+        try {
+            User user = new User();
+            user.setId(UUID.randomUUID().toString());
+            user.setEmail(model.getEmail());
+            // Hash password
+            user.setPassword(BCrypt.hashpw(model.getPassword(), BCrypt.gensalt(12)));
+            user.setFullname(model.getFullname());
+            user.setAvatar(model.getAvatar());
+            user.setPhone(model.getPhone());
+            user.setAddress(model.getAddress());
+            user.setRoleId(model.getRoleId());
+
+            userRepository.save(user);
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseModel<Null> update(UserDto model) {
+        try {
+            User user = userRepository.findById(model.getId()).get();
+            if (user == null) {
+                return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_WARNING, CONSTANT.API_RESPONSE_STATUS_DESC_NOT_FOUND);
+            }
+            user.setEmail(model.getEmail());
+            user.setFullname(model.getFullname());
+            user.setAvatar(model.getAvatar());
+            user.setPhone(model.getPhone());
+            user.setAddress(model.getAddress());
+            user.setRoleId(model.getRoleId());
+
+            userRepository.save(user);
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
+        }
+    }
+
+    @Override
+    public ResponseModel<Null> delete(String id) {
+        try {
+            userRepository.deleteById(id);
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_OK, CONSTANT.API_RESPONSE_STATUS_DESC_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseModel<Null>(CONSTANT.API_RESPONSE_STATUS_CODE_EXCEPTION, e.getMessage());
+        }
+    }
 }

@@ -17,16 +17,16 @@ import java.util.List;
 @RestController
 @RequestMapping("api/cinema")
 public class CinemaController {
-	@Autowired
-	private CinemaService cinemaService;
+    @Autowired
+    private CinemaService cinemaService;
 
-	@Autowired
-	private ResponseUtil responseUtil;
+    @Autowired
+    private ResponseUtil responseUtil;
 
-	@ResponseBody
-	@GetMapping("all")
-	public ResponseEntity all() {
-		ResponseModel<List<Cinema>> response = cinemaService.findAll();
-		return responseUtil.createResponse(HttpStatus.OK, response);
-	}
+    @ResponseBody
+    @GetMapping("all")
+    public ResponseEntity all() {
+        ResponseModel<List<Cinema>> response = cinemaService.findAll();
+        return responseUtil.createResponse(HttpStatus.OK, response);
+    }
 }

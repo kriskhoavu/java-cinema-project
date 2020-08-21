@@ -10,69 +10,70 @@
 /* 1. Loading / Opening ................ */
 /* ------------------------------------- */
 
-$(window).load(function(){
+$(window).load(function () {
     "use strict";
 
-    setTimeout(function(){
+    setTimeout(function () {
 
         $("#loading").addClass('animated-middle fadeOut');
 
-    },2000);
+    }, 2000);
 
-    setTimeout(function(){
+    setTimeout(function () {
 
-        setTimeout(function() {
+        setTimeout(function () {
 
-            $('.text-intro').each(function(i) {
-                (function(self) {
-                    setTimeout(function() {
+            $('.text-intro').each(function (i) {
+                (function (self) {
+                    setTimeout(function () {
                         $(self).addClass('animated-middle fadeInUp').removeClass('opacity-0');
-                    },(i*150)+150);
+                    }, (i * 150) + 150);
                 })(this);
             });
 
         }, 0);
-        
-    },2000);
 
-    setTimeout(function(){
+    }, 2000);
+
+    setTimeout(function () {
 
         $(".bar-intro").addClass('animated-middle slideInDown').removeClass('opacity-0');
 
-    },3000);
+    }, 3000);
 
-    setTimeout(function(){
+    setTimeout(function () {
 
-    	$("#loading").remove();
+        $("#loading").remove();
 
-    },3300);
+    }, 3300);
 
-    setTimeout(function(){
+    setTimeout(function () {
 
-    	$(".text-intro").removeClass('animated-middle fadeInUp');
+        $(".text-intro").removeClass('animated-middle fadeInUp');
 
-    },4000);
+    }, 4000);
 
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
     "use strict";
 
     $("#loading").removeClass('dark-back');
     $(".loading-text").addClass('animated-middle fadeIn').removeClass('opacity-0');
 
     /* ------------------------------------- */
-	/* 2. Custom scroll bar ................ */
-	/* ------------------------------------- */
+    /* 2. Custom scroll bar ................ */
 
-    function scrollbar(){
+    /* ------------------------------------- */
+
+    function scrollbar() {
 
         $('.content-slide').mCustomScrollbar({
             scrollInertia: 150,
-            axis            :"y"
+            axis: "y"
         });
     }
-    
+
     scrollbar();
 
     /* ------------------------------------- */
@@ -81,13 +82,13 @@ $(document).ready(function(){
 
     $("#notifyMe").notifyMe();
 
-    (function() {
+    (function () {
 
-        var dlgtrigger = document.querySelector( '[data-dialog]' ),
-            somedialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog' ) ),
-            dlg = new DialogFx( somedialog );
+        var dlgtrigger = document.querySelector('[data-dialog]'),
+            somedialog = document.getElementById(dlgtrigger.getAttribute('data-dialog')),
+            dlg = new DialogFx(somedialog);
 
-        dlgtrigger.addEventListener( 'click', dlg.toggle.bind(dlg) );
+        dlgtrigger.addEventListener('click', dlg.toggle.bind(dlg));
 
     })();
 
@@ -95,71 +96,71 @@ $(document).ready(function(){
     /* 4. SlitSlider ....................... */
     /* ------------------------------------- */
 
-    $(function() {
-			
-		var Page = (function() {
+    $(function () {
 
-			var $navArrows = $( '#nav-arrows' ),
-				$nav = $( '#nav-multi-square > span' ),
-				slitslider = $( '#slider' ).slitslider( {
-					onBeforeChange : function( slide, pos ) {
+        var Page = (function () {
 
-						$nav.removeClass( 'nav-square-current' );
-						$nav.eq( pos ).addClass( 'nav-square-current' );
+            var $navArrows = $('#nav-arrows'),
+                $nav = $('#nav-multi-square > span'),
+                slitslider = $('#slider').slitslider({
+                    onBeforeChange: function (slide, pos) {
 
-					}
-				} ),
+                        $nav.removeClass('nav-square-current');
+                        $nav.eq(pos).addClass('nav-square-current');
 
-				init = function() {
+                    }
+                }),
 
-					initEvents();
-					
-				},
-				initEvents = function() {
+                init = function () {
 
-					// add navigation events
-					$navArrows.children( ':last' ).on( 'click', function() {
+                    initEvents();
 
-						slitslider.next();
-						return false;
+                },
+                initEvents = function () {
 
-					} );
+                    // add navigation events
+                    $navArrows.children(':last').on('click', function () {
 
-					$navArrows.children( ':first' ).on( 'click', function() {
-						
-						slitslider.previous();
-						return false;
+                        slitslider.next();
+                        return false;
 
-					} );
+                    });
 
-					$nav.each( function( i ) {
-					
-						$( this ).on( 'click', function( event ) {
-							
-							var $dot = $( this );
-							
-							if( !slitslider.isActive() ) {
+                    $navArrows.children(':first').on('click', function () {
 
-								$nav.removeClass( 'nav-square-current' );
-								$dot.addClass( 'nav-square-current' );
-							
-							}
-							
-							slitslider.jump( i + 1 );
-							return false;
-						
-						} );
-						
-					} );
+                        slitslider.previous();
+                        return false;
 
-				};
+                    });
 
-				return { init : init };
+                    $nav.each(function (i) {
 
-		})();
+                        $(this).on('click', function (event) {
 
-		Page.init();
-	
-	});
+                            var $dot = $(this);
+
+                            if (!slitslider.isActive()) {
+
+                                $nav.removeClass('nav-square-current');
+                                $dot.addClass('nav-square-current');
+
+                            }
+
+                            slitslider.jump(i + 1);
+                            return false;
+
+                        });
+
+                    });
+
+                };
+
+            return {init: init};
+
+        })();
+
+        Page.init();
+
+    });
 
 });

@@ -16,16 +16,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig {
-	@Autowired
+    @Autowired
     private UserDetailsService userDetailsService;
 
-	@Autowired
-	private JWTAuthorizationFilter jwtAuthorizationFilter;
+    @Autowired
+    private JWTAuthorizationFilter jwtAuthorizationFilter;
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Order(1)
     @Configuration
@@ -38,32 +38,32 @@ public class SecurityConfig {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("ADMIN")
-                .anyRequest().permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/auth/login")
-                .loginProcessingUrl("/auth/login")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/admin/user")
-                .failureUrl("/auth/login?error=true")
-                .and()
-                .logout()
-                .logoutUrl("/auth/logout")
-                .logoutSuccessUrl("/auth/login")
-                .deleteCookies("JSESSIONID")
-                .and()
-                .exceptionHandling()
-                .accessDeniedPage("/403");
+                    .authorizeRequests()
+                    .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                    .antMatchers("/user/**").hasAnyRole("ADMIN")
+                    .anyRequest().permitAll()
+                    .and()
+                    .formLogin()
+                    .loginPage("/auth/login")
+                    .loginProcessingUrl("/auth/login")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/admin/user")
+                    .failureUrl("/auth/login?error=true")
+                    .and()
+                    .logout()
+                    .logoutUrl("/auth/logout")
+                    .logoutSuccessUrl("/auth/login")
+                    .deleteCookies("JSESSIONID")
+                    .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/403");
         }
 
         @Bean
         @Override
         public AuthenticationManager authenticationManagerBean() throws Exception {
-        	return super.authenticationManagerBean();
+            return super.authenticationManagerBean();
         }
     }
 }

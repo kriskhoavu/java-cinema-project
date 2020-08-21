@@ -25,12 +25,10 @@
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define(['jquery', 'moment'], factory);
-    }
-    else if (typeof exports === 'object') {
+    } else if (typeof exports === 'object') {
         // Node/CommonJS
         factory(require('jquery'), require('moment'));
-    }
-    else {
+    } else {
         // Browser globals
         factory(jQuery, moment);
     }
@@ -41,34 +39,34 @@
     // This is the default calendar template. This can be overridden.
     var clndrTemplate =
         "<div class='clndr-controls'>" +
-            "<div class='clndr-control-button'>" +
-                "<span class='clndr-previous-button'>previous</span>" +
-            "</div>" +
-            "<div class='month'><%= month %> <%= year %></div>" +
-            "<div class='clndr-control-button rightalign'>" +
-                "<span class='clndr-next-button'>next</span>" +
-            "</div>" +
+        "<div class='clndr-control-button'>" +
+        "<span class='clndr-previous-button'>previous</span>" +
+        "</div>" +
+        "<div class='month'><%= month %> <%= year %></div>" +
+        "<div class='clndr-control-button rightalign'>" +
+        "<span class='clndr-next-button'>next</span>" +
+        "</div>" +
         "</div>" +
         "<table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>" +
-            "<thead>" +
-                "<tr class='header-days'>" +
-                "<% for(var i = 0; i < daysOfTheWeek.length; i++) { %>" +
-                    "<td class='header-day'><%= daysOfTheWeek[i] %></td>" +
-                "<% } %>" +
-                "</tr>" +
-            "</thead>" +
-            "<tbody>" +
-            "<% for(var i = 0; i < numberOfRows; i++){ %>" +
-                "<tr>" +
-                "<% for(var j = 0; j < 7; j++){ %>" +
-                "<% var d = j + i * 7; %>" +
-                    "<td class='<%= days[d].classes %>'>" +
-                        "<div class='day-contents'><%= days[d].day %></div>" +
-                    "</td>" +
-                "<% } %>" +
-                "</tr>" +
-            "<% } %>" +
-            "</tbody>" +
+        "<thead>" +
+        "<tr class='header-days'>" +
+        "<% for(var i = 0; i < daysOfTheWeek.length; i++) { %>" +
+        "<td class='header-day'><%= daysOfTheWeek[i] %></td>" +
+        "<% } %>" +
+        "</tr>" +
+        "</thead>" +
+        "<tbody>" +
+        "<% for(var i = 0; i < numberOfRows; i++){ %>" +
+        "<tr>" +
+        "<% for(var j = 0; j < 7; j++){ %>" +
+        "<% var d = j + i * 7; %>" +
+        "<td class='<%= days[d].classes %>'>" +
+        "<div class='day-contents'><%= days[d].day %></div>" +
+        "</td>" +
+        "<% } %>" +
+        "</tr>" +
+        "<% } %>" +
+        "</tbody>" +
         "</table>";
 
     // Defaults used throughout the application, see docs.
@@ -205,8 +203,7 @@
                     .add(this.options.lengthOfTime.months, 'months')
                     .subtract(1, 'days');
                 this.month = this.intervalStart.clone();
-            }
-            else if (this.options.lengthOfTime.days) {
+            } else if (this.options.lengthOfTime.days) {
                 // The length is specified in days. Start date?
                 if (this.options.lengthOfTime.startDate) {
                     this.intervalStart =
@@ -221,8 +218,8 @@
                     .endOf('day');
                 this.month = this.intervalStart.clone();
             }
-        // No length of time specified so we're going to default into using the
-        // current month as the time period.
+            // No length of time specified so we're going to default into using the
+            // current month as the time period.
         } else {
             this.month = moment().startOf('month');
             this.intervalStart = moment(this.month);
@@ -257,15 +254,13 @@
                     dayDiff = this.intervalStart.diff(this.intervalEnd, 'days');
 
                     if (dayDiff < this.options.lengthOfTime.days
-                        || this.intervalEnd.isBefore(this.intervalStart))
-                    {
+                        || this.intervalEnd.isBefore(this.intervalStart)) {
                         this.intervalEnd = moment(this.intervalStart)
                             .add(this.options.lengthOfTime.days - 1, 'days')
                             .endOf('day');
                         this.month = this.intervalStart.clone();
                     }
-                }
-                else {
+                } else {
                     if (this.intervalStart.isBefore(constraintStart, 'month')) {
                         // Try to preserve the date by moving only the month.
                         this.intervalStart
@@ -302,8 +297,7 @@
                             .endOf('week');
                         this.month = this.intervalStart.clone();
                     }
-                }
-                else {
+                } else {
                     if (this.intervalEnd.isAfter(constraintEnd, 'month')) {
                         this.intervalEnd
                             .set('month', constraintEnd.month())
@@ -566,7 +560,7 @@
                         this.calendarDay({
                             classes: this.options.targets.empty + " " +
                                 this.options.classes.nextMonth
-                    }));
+                        }));
                 }
             }
         }
@@ -601,10 +595,9 @@
             // If today is the same day as start or is after the start, and
             // if today is the same day as the end or before the end ...
             // woohoo semantics!
-            if ( (day.isSame(start, 'day') || day.isAfter(start, 'day'))
-                && (day.isSame(end, 'day') || day.isBefore(end, 'day')) )
-            {
-                eventsToday.push( monthEvents[j] );
+            if ((day.isSame(start, 'day') || day.isAfter(start, 'day'))
+                && (day.isSame(end, 'day') || day.isBefore(end, 'day'))) {
+                eventsToday.push(monthEvents[j]);
             }
         }
 
@@ -629,8 +622,7 @@
                 this._currentIntervalStart.year() === day.year()
                     ? extraClasses += (" " + this.options.classes.lastMonth)
                     : extraClasses += (" " + this.options.classes.nextMonth);
-            }
-            else if (this._currentIntervalStart.month() < day.month()) {
+            } else if (this._currentIntervalStart.month() < day.month()) {
                 extraClasses += (" " + this.options.classes.adjacentMonth);
                 properties.isAdjacentMonth = true;
 
@@ -720,8 +712,7 @@
                 intervalStart: this.intervalStart.clone(),
                 eventsThisInterval: this.eventsThisInterval
             };
-        }
-        else if (this.options.lengthOfTime.months) {
+        } else if (this.options.lengthOfTime.months) {
             months = [];
             numberOfRows = 0;
             eventsThisInterval = [];
@@ -765,8 +756,7 @@
                 eventsNextMonth: this.eventsNextMonth,
                 eventsThisInterval: eventsThisInterval,
             };
-        }
-        else {
+        } else {
             // Get an array of days and blank spaces
             days = this.createDaysObject(
                 this.month.clone().startOf('month'),
@@ -794,7 +784,7 @@
 
         // Render the calendar with the data above & bind events to its
         // elements
-        if ( !this.options.render) {
+        if (!this.options.render) {
             this.calendarContainer.html(
                 this.compiledClndrTemplate(data));
         } else {
@@ -833,8 +823,7 @@
             // Deal with the month controls first. Do we have room to go back?
             if (start
                 && (start.isAfter(this.intervalStart)
-                    || start.isSame(this.intervalStart, 'day')))
-            {
+                    || start.isSame(this.intervalStart, 'day'))) {
                 this.element.find('.' + this.options.targets.previousButton)
                     .toggleClass(this.options.classes.inactive, true);
                 this.constraints.previous = !this.constraints.previous;
@@ -843,8 +832,7 @@
             // Do we have room to go forward?
             if (end
                 && (end.isBefore(this.intervalEnd)
-                    || end.isSame(this.intervalEnd, 'day')))
-            {
+                    || end.isSame(this.intervalEnd, 'day'))) {
                 this.element.find('.' + this.options.targets.nextButton)
                     .toggleClass(this.options.classes.inactive, true);
                 this.constraints.next = !this.constraints.next;
@@ -866,9 +854,8 @@
 
             // Today? We could put this in init(), but we want to support the
             // user changing the constraints on a living instance.
-            if ( (start && start.isAfter( moment(), 'month' ))
-                || (end && end.isBefore( moment(), 'month' )) )
-            {
+            if ((start && start.isAfter(moment(), 'month'))
+                || (end && end.isBefore(moment(), 'month'))) {
                 this.element.find('.' + this.options.targets.today)
                     .toggleClass(this.options.classes.inactive, true);
                 this.constraints.today = !this.constraints.today;
@@ -916,8 +903,7 @@
             if (self.options.adjacentDaysChangeMonth) {
                 if ($currentTarget.is('.' + classes.lastMonth)) {
                     self.backActionWithContext(self);
-                }
-                else if ($currentTarget.is('.' + classes.nextMonth)) {
+                } else if ($currentTarget.is('.' + classes.nextMonth)) {
                     self.forwardActionWithContext(self);
                 }
             }
@@ -925,8 +911,7 @@
             // if trackSelectedDate is on, we need to handle click on a new day
             if (self.options.trackSelectedDate) {
                 if (self.options.ignoreInactiveDaysInSelection
-                    && $currentTarget.hasClass(classes.inactive))
-                {
+                    && $currentTarget.hasClass(classes.inactive)) {
                     return;
                 }
 
@@ -954,8 +939,7 @@
             if (self.options.adjacentDaysChangeMonth) {
                 if ($eventTarget.is('.' + classes.lastMonth)) {
                     self.backActionWithContext(self);
-                }
-                else if ($eventTarget.is('.' + classes.nextMonth)) {
+                } else if ($eventTarget.is('.' + classes.nextMonth)) {
                     self.forwardActionWithContext(self);
                 }
             }
@@ -1019,8 +1003,7 @@
                         return (isSameStart || isAfterStart)
                             && (isSameEnd || isBeforeEnd);
                     };
-                }
-                else {
+                } else {
                     filterFn = function () {
                         var startString = this._clndrStartDateObject
                             .format('YYYY-MM-DD');
@@ -1080,10 +1063,10 @@
 
         // We want to determine if any of the change conditions have been
         // hit and then trigger our events based off that.
-        nextMonth = newInt.start.isAfter( orig.start )
+        nextMonth = newInt.start.isAfter(orig.start)
             && (Math.abs(newInt.start.month() - orig.start.month()) == 1
                 || orig.start.month() === 11 && newInt.start.month() === 0);
-        prevMonth = newInt.start.isBefore( orig.start )
+        prevMonth = newInt.start.isBefore(orig.start)
             && (Math.abs(orig.start.month() - newInt.start.month()) == 1
                 || orig.start.month() === 0 && newInt.start.month() === 11);
         monthChanged = newInt.start.month() !== orig.start.month()
@@ -1148,7 +1131,7 @@
     Clndr.prototype.back = function (options /*, ctx */) {
         var yearChanged = null,
             ctx = (arguments.length > 1)
-                ? arguments[ 1 ]
+                ? arguments[1]
                 : this,
             timeOpt = ctx.options.lengthOfTime,
             defaults = {
@@ -1177,8 +1160,7 @@
                 .subtract(1, 'days')
                 .endOf('month');
             ctx.month = ctx.intervalStart.clone();
-        }
-        else {
+        } else {
             // Shift the interval in days
             ctx.intervalStart
                 .subtract(timeOpt.interval, 'days')
@@ -1222,8 +1204,8 @@
      */
     Clndr.prototype.forward = function (options /*, ctx */) {
         var ctx = (arguments.length > 1)
-                ? arguments[1]
-                : this,
+            ? arguments[1]
+            : this,
             timeOpt = ctx.options.lengthOfTime,
             defaults = {
                 withCallbacks: false
@@ -1251,8 +1233,7 @@
                 .endOf('day');
             // @V2-todo Useless, but consistent with API
             ctx.month = ctx.intervalStart.clone();
-        }
-        else {
+        } else {
             // Shift the interval by a month (or several months)
             ctx.intervalStart
                 .add(timeOpt.interval, 'months')
@@ -1294,8 +1275,8 @@
      */
     Clndr.prototype.previousYear = function (options /*, ctx */) {
         var ctx = (arguments.length > 1)
-                ? arguments[1]
-                : this,
+            ? arguments[1]
+            : this,
             defaults = {
                 withCallbacks: false
             },
@@ -1336,8 +1317,8 @@
      */
     Clndr.prototype.nextYear = function (options /*, ctx */) {
         var ctx = (arguments.length > 1)
-                ? arguments[1]
-                : this,
+            ? arguments[1]
+            : this,
             defaults = {
                 withCallbacks: false
             },
@@ -1375,8 +1356,8 @@
 
     Clndr.prototype.today = function (options /*, ctx */) {
         var ctx = (arguments.length > 1)
-                ? arguments[1]
-                : this,
+            ? arguments[1]
+            : this,
             timeOpt = ctx.options.lengthOfTime,
             defaults = {
                 withCallbacks: false
@@ -1406,8 +1387,7 @@
             ctx.intervalEnd = ctx.intervalStart.clone()
                 .add(timeOpt.days - 1, 'days')
                 .endOf('day');
-        }
-        else {
+        } else {
             // Set the intervalStart to this month.
             ctx.intervalStart = moment().startOf('month');
             ctx.intervalEnd = ctx.intervalStart.clone()
@@ -1418,8 +1398,7 @@
 
         // No need to re-render if we didn't change months.
         if (!ctx.intervalStart.isSame(orig.start)
-            || !ctx.intervalEnd.isSame(orig.end))
-        {
+            || !ctx.intervalEnd.isSame(orig.end)) {
             ctx.render();
         }
 

@@ -3,35 +3,37 @@
 ========================== **/
 
 .generic-card-block code {
-    cursor: pointer;
-    display: inline-block;
-    margin-right: 10px;
-    margin-bottom: 10px;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .generic-image-body {
-    li {
-        padding: 0 20px;
-        display: inline-block;
-    }
-    code {
-        display: block;
-    }
-    img {
-        display: block;
-        margin: 10px auto 0;
-    }
+  li {
+    padding: 0 20px;
+    display: inline-block;
+  }
+
+  code {
+    display: block;
+  }
+
+  img {
+    display: block;
+    margin: 10px auto 0;
+  }
 }
 
 
 /*====== Padding css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .p-#{$i} {
-        padding:#{$i}px;
-    }
-    $i:$i+5;
+  .p-#{$i} {
+    padding: #{$i}px;
+  }
+  $i: $i+5;
 }
 
 
@@ -40,12 +42,12 @@ $i:0;
 
 /*====== Padding-top css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .p-t-#{$i} {
-        padding-top:#{$i}px !important;
-    }
-    $i:$i+5;
+  .p-t-#{$i} {
+    padding-top: #{$i}px !important;
+  }
+  $i: $i+5;
 }
 
 
@@ -54,12 +56,12 @@ $i:0;
 
 /*====== Padding-bottom css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .p-b-#{$i} {
-        padding-bottom:#{$i}px !important;
-    }
-    $i:$i+5;
+  .p-b-#{$i} {
+    padding-bottom: #{$i}px !important;
+  }
+  $i: $i+5;
 }
 
 
@@ -68,12 +70,12 @@ $i:0;
 
 /*====== Padding-left css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .p-l-#{$i} {
-        padding-left:#{$i}px;
-    }
-    $i:$i+5;
+  .p-l-#{$i} {
+    padding-left: #{$i}px;
+  }
+  $i: $i+5;
 }
 
 
@@ -82,12 +84,12 @@ $i:0;
 
 /*====== Padding-right css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .p-r-#{$i} {
-        padding-right:#{$i}px;
-    }
-    $i:$i+5;
+  .p-r-#{$i} {
+    padding-right: #{$i}px;
+  }
+  $i: $i+5;
 }
 
 
@@ -96,12 +98,12 @@ $i:0;
 
 /*====== Margin css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .m-#{$i} {
-        margin:#{$i}px;
-    }
-    $i:$i+5;
+  .m-#{$i} {
+    margin: #{$i}px;
+  }
+  $i: $i+5;
 }
 
 
@@ -110,12 +112,12 @@ $i:0;
 
 /*====== Margin-top css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .m-t-#{$i} {
-        margin-top:#{$i}px;
-    }
-    $i:$i+5;
+  .m-t-#{$i} {
+    margin-top: #{$i}px;
+  }
+  $i: $i+5;
 }
 
 
@@ -124,12 +126,12 @@ $i:0;
 
 /*====== Margin-Bottom css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .m-b-#{$i} {
-        margin-bottom:#{$i}px;
-    }
-    $i:$i+5;
+  .m-b-#{$i} {
+    margin-bottom: #{$i}px;
+  }
+  $i: $i+5;
 }
 
 
@@ -138,12 +140,12 @@ $i:0;
 
 /*====== Margin-left css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .m-l-#{$i} {
-        margin-left:#{$i}px;
-    }
-    $i:$i+5;
+  .m-l-#{$i} {
+    margin-left: #{$i}px;
+  }
+  $i: $i+5;
 }
 
 
@@ -152,12 +154,12 @@ $i:0;
 
 /*====== Margin-right css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=50 {
-    .m-r-#{$i} {
-        margin-right:#{$i}px;
-    }
-    $i:$i+5;
+  .m-r-#{$i} {
+    margin-right: #{$i}px;
+  }
+  $i: $i+5;
 }
 
 
@@ -166,13 +168,13 @@ $i:0;
 
 /*====== Display css starts ======*/
 
-$i:none,
+$i: none,
 inline-block,
 inline-flex;
 @each $val in $i {
-    .d-#{$val} {
-        display: $val;
-    }
+  .d-#{$val} {
+    display: $val;
+  }
 }
 
 
@@ -181,12 +183,12 @@ inline-flex;
 
 /*====== Border-radius css starts ======*/
 
-$i:0;
+$i: 0;
 @while $i<=10 {
-    .b-radius-#{$i} {
-        border-radius:#{$i}px !important;
-    }
-    $i:$i+5;
+  .b-radius-#{$i} {
+    border-radius: #{$i}px !important;
+  }
+  $i: $i+5;
 }
 
 
@@ -195,12 +197,12 @@ $i:0;
 
 /*====== Font-size css starts ======*/
 
-$i:10;
+$i: 10;
 @while $i<=80 {
-    .f-#{$i} {
-        font-size:#{$i}px;
-    }
-    $i:$i+2;
+  .f-#{$i} {
+    font-size: #{$i}px;
+  }
+  $i: $i+2;
 }
 
 
@@ -209,20 +211,20 @@ $i:10;
 
 /*====== Font-weight css starts ======*/
 
-$i:100,
+$i: 100,
 300,
 400,
 600,
 700,
 900;
 @each $val in $i {
-    .f-w-#{$val} {
-        @if($val==900){
-            font-weight: 600;
-        }@else{
-            font-weight: $val;
-        }
+  .f-w-#{$val} {
+    @if ($val==900) {
+      font-weight: 600;
+    } @else {
+      font-weight: $val;
     }
+  }
 }
 
 
@@ -231,15 +233,15 @@ $i:100,
 
 /*====== Font-style css starts ======*/
 
-$i:normal,
+$i: normal,
 italic,
 oblique,
 initial,
 inherit;
 @each $val in $i {
-    .f-s-#{$val} {
-        font-style: $val;
-    }
+  .f-s-#{$val} {
+    font-style: $val;
+  }
 }
 
 
@@ -248,13 +250,13 @@ inherit;
 
 /*====== Text-align css starts ======*/
 
-$i:center,
+$i: center,
 left,
 right;
 @each $val in $i {
-    .text-#{$val} {
-        text-align: $val;
-    }
+  .text-#{$val} {
+    text-align: $val;
+  }
 }
 
 
@@ -263,13 +265,13 @@ right;
 
 /*====== Text-Transform css starts ======*/
 
-$i:capitalize,
+$i: capitalize,
 uppercase,
 lowercase;
 @each $val in $i {
-    .text-#{$val} {
-        text-transform: $val;
-    }
+  .text-#{$val} {
+    text-transform: $val;
+  }
 }
 
 
@@ -278,13 +280,13 @@ lowercase;
 
 /*====== Text-Decoration css starts ======*/
 
-$i:overline,
+$i: overline,
 line-through,
 underline;
 @each $val in $i {
-    .text-#{$val} {
-        text-decoration: $val;
-    }
+  .text-#{$val} {
+    text-decoration: $val;
+  }
 }
 
 
@@ -293,7 +295,7 @@ underline;
 
 /*====== Vertical-Align css starts ======*/
 
-$i:baseline,
+$i: baseline,
 sub,
 super,
 top,
@@ -304,9 +306,9 @@ text-bottom,
 initial,
 inherit;
 @each $val in $i {
-    .#{$val} {
-        vertical-align: $val;
-    }
+  .#{$val} {
+    vertical-align: $val;
+  }
 }
 
 
@@ -315,16 +317,16 @@ inherit;
 
 /*====== Position css starts ======*/
 
-$i:static,
+$i: static,
 absolute,
 fixed,
 relative,
 initial,
 inherit;
 @each $val in $i {
-    .pos-#{$val} {
-        position: $val;
-    }
+  .pos-#{$val} {
+    position: $val;
+  }
 }
 
 
@@ -333,13 +335,13 @@ inherit;
 
 /*====== Float css starts ======*/
 
-$i:left,
+$i: left,
 right,
 none;
 @each $val in $i {
-    .f-#{$val} {
-        float: $val;
-    }
+  .f-#{$val} {
+    float: $val;
+  }
 }
 
 
@@ -348,13 +350,13 @@ none;
 
 /*====== Overflow css starts ======*/
 
-$i:hidden,
+$i: hidden,
 visible,
 auto;
 @each $val in $i {
-    .o-#{$val} {
-        overflow: $val;
-    }
+  .o-#{$val} {
+    overflow: $val;
+  }
 }
 
 
@@ -363,12 +365,12 @@ auto;
 
 /*====== Image-sizes css starts ======*/
 
-$i:20;
+$i: 20;
 @while $i<=100 {
-    .img-#{$i} {
-        width:#{$i}px;
-    }
-    $i:$i+10;
+  .img-#{$i} {
+    width: #{$i}px;
+  }
+  $i: $i+10;
 }
 
 
@@ -377,13 +379,13 @@ $i:20;
 
 /*======= Text css starts ===========*/
 
-$custom-color:#64b0f2;
-$pink-color:#ff7aa3;
-$muted-color:#919aa3;
-$dark-color:#2b3d51;
-$purple-color:#9261c6;
-$muted-color:#919aa3;
-$text-name:text-primary,
+$custom-color: #64b0f2;
+$pink-color: #ff7aa3;
+$muted-color: #919aa3;
+$dark-color: #2b3d51;
+$purple-color: #9261c6;
+$muted-color: #919aa3;
+$text-name: text-primary,
 text-warning,
 text-default,
 text-danger,
@@ -396,7 +398,7 @@ text-muted,
 text-dark,
 text-purple,
 text-muted;
-$text-color:$primary-color,
+$text-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -410,10 +412,10 @@ $dark-color,
 $purple-color,
 $muted-color;
 @each $var in $text-name {
-    $i: index($text-name, $var);
-    .#{$var} {
-        color: nth($text-color, $i) !important;
-    }
+  $i: index($text-name, $var);
+  .#{$var} {
+    color: nth($text-color, $i) !important;
+  }
 }
 
 
@@ -423,22 +425,22 @@ $muted-color;
 /*======= Label-color css starts  ======= */
 
 .label {
-    border-radius: 2px;
-    color: #fff;
-    font-size: 12px;
-    line-height: 1;
-    margin-bottom: 0;
-    text-transform: capitalize;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  margin-bottom: 0;
+  text-transform: capitalize;
 }
 
-$label-name:primary,
+$label-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$label-color:$primary-color,
+$label-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -446,13 +448,14 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $label-name {
-    $i: index($label-name, $var);
-    .label-#{$var} {
-        background:linear-gradient(to right, nth($label-color, $i),lighten(nth($label-color, $i),10%));
-    }
+  $i: index($label-name, $var);
+  .label-#{$var} {
+    background: linear-gradient(to right, nth($label-color, $i), lighten(nth($label-color, $i), 10%));
+  }
 }
-.label-warning{
-    color:#fff;
+
+.label-warning {
+  color: #fff;
 }
 
 /*======= Label-color css starts  ======= */
@@ -460,14 +463,14 @@ $info-color;
 
 /*======= Badge-color css starts  ======= */
 
-$badge-name:primary,
+$badge-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$badge-color:$primary-color,
+$badge-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -475,10 +478,10 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $badge-name {
-    $i: index($badge-name, $var);
-    .badge-#{$var} {
-        background-color: nth($label-color, $i);
-    }
+  $i: index($badge-name, $var);
+  .badge-#{$var} {
+    background-color: nth($label-color, $i);
+  }
 }
 
 
@@ -488,28 +491,28 @@ $info-color;
 /*======= Background-color css starts  ======= */
 
 .bg-color-box {
-    text-align: center;
-    display: inline-block;
-    padding: 10px 20px;
-    box-shadow: 0 0 5px 0 rgba(128, 128, 128, 0.49);
-    font-weight: 600;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  padding: 10px 20px;
+  box-shadow: 0 0 5px 0 rgba(128, 128, 128, 0.49);
+  font-weight: 600;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .bg-color-box span {
-    color: #fff;
+  color: #fff;
 }
 
-$background-name:primary,
+$background-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$background-color:$primary-color,
+$background-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -517,11 +520,11 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $background-name {
-    $i: index($background-name, $var);
-    .bg-#{$var} {
-        background-color: nth($label-color, $i) !important;
-        color: #fff;
-    }
+  $i: index($background-name, $var);
+  .bg-#{$var} {
+    background-color: nth($label-color, $i) !important;
+    color: #fff;
+  }
 }
 
 
@@ -530,14 +533,14 @@ $info-color;
 
 /*======= Button-color css starts  ======= */
 
-$btn-name:primary,
+$btn-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$btn-color:$primary-color,
+$btn-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -545,10 +548,10 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $btn-name {
-    $i: index($btn-name, $var);
-    .color-#{$var} {
-        background-color: nth($btn-color, $i);
-    }
+  $i: index($btn-name, $var);
+  .color-#{$var} {
+    background-color: nth($btn-color, $i);
+  }
 }
 
 
@@ -557,14 +560,14 @@ $info-color;
 
 /*======= Loader-color css starts  ======= */
 
-$loader-name:primary,
+$loader-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$loader-color:$primary-color,
+$loader-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -572,10 +575,10 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $loader-name {
-    $i: index($loader-name, $var);
-    .loader-#{$var} {
-        background-color: nth($loader-color, $i) !important;
-    }
+  $i: index($loader-name, $var);
+  .loader-#{$var} {
+    background-color: nth($loader-color, $i) !important;
+  }
 }
 
 
@@ -584,14 +587,14 @@ $info-color;
 
 /*======= Nestable-color css starts  ======= */
 
-$nestable-name:primary,
+$nestable-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$nestable-color:$primary-color,
+$nestable-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -599,12 +602,12 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $nestable-name {
-    $i: index($nestable-name, $var);
-    .nestable-#{$var} {
-        background-color: nth($nestable-color, $i) !important;
-        border-color: nth($nestable-color, $i);
-        color: #fff !important;
-    }
+  $i: index($nestable-name, $var);
+  .nestable-#{$var} {
+    background-color: nth($nestable-color, $i) !important;
+    border-color: nth($nestable-color, $i);
+    color: #fff !important;
+  }
 }
 
 
@@ -613,14 +616,14 @@ $info-color;
 
 /*======= Table-Border-Bottom-color css starts  ======= */
 
-$border-name:primary,
+$border-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$border-color:$primary-color,
+$border-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -628,12 +631,12 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $border-name {
-    $i: index($border-name, $var);
-    table thead .border-bottom-#{$var} th,
-    table tbody .border-bottom-#{$var} th,
-    table tbody .border-bottom-#{$var} td {
-        border-bottom: 1px solid nth($border-color, $i);
-    }
+  $i: index($border-name, $var);
+  table thead .border-bottom-#{$var} th,
+  table tbody .border-bottom-#{$var} th,
+  table tbody .border-bottom-#{$var} td {
+    border-bottom: 1px solid nth($border-color, $i);
+  }
 }
 
 
@@ -642,14 +645,14 @@ $info-color;
 
 /*======= Table styling css starts  ======= */
 
-$table-name:primary,
+$table-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$table-color:$primary-color,
+$table-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -657,17 +660,18 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $table-name {
-    $i: index($table-name, $var);
-    .table-styling .table-#{$var},
-    .table-styling.table-#{$var} {
-        background-color: nth($border-color, $i);
-        color: #fff;
-        border: 3px solid nth($border-color, $i);
-        thead {
-            background-color: darken(nth($border-color, $i), 10%);
-            border: 3px solid darken(nth($border-color, $i), 10%);
-        }
+  $i: index($table-name, $var);
+  .table-styling .table-#{$var},
+  .table-styling.table-#{$var} {
+    background-color: nth($border-color, $i);
+    color: #fff;
+    border: 3px solid nth($border-color, $i);
+
+    thead {
+      background-color: darken(nth($border-color, $i), 10%);
+      border: 3px solid darken(nth($border-color, $i), 10%);
     }
+  }
 }
 
 
@@ -676,16 +680,16 @@ $info-color;
 
 /*======= Toolbar css starts  ======= */
 
-$light:#bdc3c7;
-$dark:#34495e;
-$toolbar-name:primary,
+$light: #bdc3c7;
+$dark: #34495e;
+$toolbar-name: primary,
 warning,
 light,
 danger,
 success,
 dark,
 info;
-$toolbar-color:$primary-color,
+$toolbar-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -693,29 +697,29 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $toolbar-name {
-    $i: index($toolbar-name, $var);
-    .toolbar-#{$var} .tool-item {
-        background: nth($toolbar-color, $i) !important;
-    }
-    .toolbar-#{$var} .tool-item.selected,
-    .toolbar-#{$var} .tool-item:hover {
-        background: darken(nth($toolbar-color, $i), 10%) !important;
-    }
-    .toolbar-#{$var}.tool-top .arrow {
-        border-color: nth($toolbar-color, $i) transparent transparent;
-    }
-    .toolbar-#{$var}.tool-bottom .arrow {
-        border-color: transparent transparent nth($toolbar-color, $i);
-    }
-    .toolbar-#{$var}.tool-left .arrow {
-        border-color: transparent transparent transparent nth($toolbar-color, $i);
-    }
-    .toolbar-#{$var}.tool-right .arrow {
-        border-color: transparent nth($toolbar-color, $i) transparent transparent;
-    }
-    .btn-toolbar-#{$var}.pressed {
-        background-color: nth($toolbar-color, $i);
-    }
+  $i: index($toolbar-name, $var);
+  .toolbar-#{$var} .tool-item {
+    background: nth($toolbar-color, $i) !important;
+  }
+  .toolbar-#{$var} .tool-item.selected,
+  .toolbar-#{$var} .tool-item:hover {
+    background: darken(nth($toolbar-color, $i), 10%) !important;
+  }
+  .toolbar-#{$var}.tool-top .arrow {
+    border-color: nth($toolbar-color, $i) transparent transparent;
+  }
+  .toolbar-#{$var}.tool-bottom .arrow {
+    border-color: transparent transparent nth($toolbar-color, $i);
+  }
+  .toolbar-#{$var}.tool-left .arrow {
+    border-color: transparent transparent transparent nth($toolbar-color, $i);
+  }
+  .toolbar-#{$var}.tool-right .arrow {
+    border-color: transparent nth($toolbar-color, $i) transparent transparent;
+  }
+  .btn-toolbar-#{$var}.pressed {
+    background-color: nth($toolbar-color, $i);
+  }
 }
 
 
@@ -724,14 +728,14 @@ $info-color;
 
 /*======= Card-Border-Top-color css starts  ======= */
 
-$card-name:primary,
+$card-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$card-color:$primary-color,
+$card-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -739,10 +743,10 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $card-name {
-    $i: index($card-name, $var);
-    .card-border-#{$var} {
-        border-top: 4px solid nth($border-color, $i);
-    }
+  $i: index($card-name, $var);
+  .card-border-#{$var} {
+    border-top: 4px solid nth($border-color, $i);
+  }
 }
 
 
@@ -751,14 +755,14 @@ $info-color;
 
 /*======= Panels-wells-color css starts  ======= */
 
-$panel-name:primary,
+$panel-name: primary,
 warning,
 default,
 danger,
 success,
 inverse,
 info;
-$panel-color:$primary-color,
+$panel-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -766,10 +770,10 @@ $success-color,
 $inverse-color,
 $info-color;
 @each $var in $panel-name {
-    $i: index($panel-name, $var);
-    .panels-wells .panel-#{$var} {
-        border-color: nth($border-color, $i);
-    }
+  $i: index($panel-name, $var);
+  .panels-wells .panel-#{$var} {
+    border-color: nth($border-color, $i);
+  }
 }
 
 
@@ -778,7 +782,7 @@ $info-color;
 
 /*======= All-Borders-color css starts  ======= */
 
-$b-name:primary,
+$b-name: primary,
 warning,
 default,
 danger,
@@ -786,7 +790,7 @@ success,
 inverse,
 info,
 theme;
-$b-color:$primary-color,
+$b-color: $primary-color,
 $warning-color,
 $default-color,
 $danger-color,
@@ -795,19 +799,19 @@ $inverse-color,
 $info-color,
 $theme-border;
 @each $var in $b-name {
-    $i: index($b-name, $var);
-    .b-t-#{$var} {
-        border-top: 1px solid nth($b-color, $i);
-    }
-    .b-b-#{$var} {
-        border-bottom: 1px solid nth($b-color, $i);
-    }
-    .b-l-#{$var} {
-        border-left: 1px solid nth($b-color, $i);
-    }
-    .b-r-#{$var} {
-        border-right: 1px solid nth($b-color, $i);
-    }
+  $i: index($b-name, $var);
+  .b-t-#{$var} {
+    border-top: 1px solid nth($b-color, $i);
+  }
+  .b-b-#{$var} {
+    border-bottom: 1px solid nth($b-color, $i);
+  }
+  .b-l-#{$var} {
+    border-left: 1px solid nth($b-color, $i);
+  }
+  .b-r-#{$var} {
+    border-right: 1px solid nth($b-color, $i);
+  }
 }
 
 

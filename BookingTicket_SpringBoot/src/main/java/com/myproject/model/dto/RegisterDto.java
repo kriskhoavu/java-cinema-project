@@ -10,39 +10,39 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class RegisterDto {
 
-	private String id;
-	
-	@NotBlank(message = "Email chưa được nhập!")
-	@Email(message = "Email không đúng định dạng!")
-	private String email;
-	
-	@NotBlank(message = "Họ tên chưa được nhập!")
-	private String fullname;
-	
-	@NotBlank(message = "Mật khẩu chưa được nhập!")
-	private String password;
-	
-	private String confirm;
-	
-	private String avatar;
-	private String phone;
-	private String address;
-	
-	@NotBlank(message = "Vui lòng chọn loại người dùng!")
-	private String roleId;
-	
-	private RoleDto role;
+    private String id;
 
-	public RegisterDto(String id, String email, String fullname, String password, String confirm, String avatar, String phone, String address, String roleId) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.fullname = fullname;
-		this.password = password;
-		this.confirm = confirm;
-		this.avatar = avatar;
-		this.phone = phone;
-		this.address = address;
-		this.roleId = roleId;
-	}
+    @NotBlank(message = "Email chưa được nhập!")
+    @Email(message = "Email không đúng định dạng!")
+    private String email;
+
+    @NotBlank(message = "Họ tên chưa được nhập!")
+    private String fullname;
+
+    @NotBlank(message = "Mật khẩu chưa được nhập!")
+    private String password;
+
+    private String confirm;
+
+    private String avatar;
+    private String phone;
+    private String address;
+
+    @NotBlank(message = "Vui lòng chọn loại người dùng!")
+    private String roleId;
+
+    private RoleDto role;
+
+    public RegisterDto(String id, String email, String fullname, String password, String confirm, String avatar, String phone, String address, String roleId) {
+        super();
+        this.id = id;
+        this.email = email;
+        this.fullname = fullname;
+        this.password = password;
+        this.confirm = confirm;
+        this.avatar = avatar;
+        this.phone = phone;
+        this.address = address;
+        this.roleId = roleId;
+    }
 }

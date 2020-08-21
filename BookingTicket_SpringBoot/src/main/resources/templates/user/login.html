@@ -3,74 +3,76 @@
 
 <head>
     <title>Login</title>
-    
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="#">
-    <meta name="keywords"
-        content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
-    <meta name="author" content="#">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="#" name="description">
+    <meta content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app"
+          name="keywords">
+    <meta content="#" name="author">
     <!-- Favicon icon -->
 
     <link rel="icon" th:href="@{/login/assets/images/favicon.ico}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" th:href="@{/login/bower_components/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/login/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/login/bower_components/bootstrap/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/login/assets/css/style.css}" type="text/css">
 </head>
 
 <body class="fix-menu">
-    <!-- Pre-loader end -->
-    <section class="login-block">
-        <!-- Container-fluid starts -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <!-- Authentication card start -->
-                    <form th:action="@{/auth/login}" method="post" action="#" class="md-float-material form-material">
-                        <div class="text-center">
-                            <img th:src="@{/login/assets/images/logo.png}" alt="logo.png">
-                        </div>
-                        <div class="auth-box card">
-                            <div class="card-block">
-                                <div class="row m-b-20">
-                                    <div class="col-md-12">
-                                        <h3 class="text-center txt-primary">Login</h3>
-                                        <h6 class="text-danger text-center m-0" th:text="${message}"></h6>
-                                    </div>
+<!-- Pre-loader end -->
+<section class="login-block">
+    <!-- Container-fluid starts -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- Authentication card start -->
+                <form action="#" class="md-float-material form-material" method="post" th:action="@{/auth/login}">
+                    <div class="text-center">
+                        <img alt="logo.png" th:src="@{/login/assets/images/logo.png}">
+                    </div>
+                    <div class="auth-box card">
+                        <div class="card-block">
+                            <div class="row m-b-20">
+                                <div class="col-md-12">
+                                    <h3 class="text-center txt-primary">Login</h3>
+                                    <h6 class="text-danger text-center m-0" th:text="${message}"></h6>
                                 </div>
-                                <div class="form-group form-primary">
-                                    <label for="email">Email</label>
-                                    <input type="text" id="email" name="email" class="form-control">
-                                </div>
-                                <div class="form-group form-primary">
-                                    <label for="password">Mật khẩu</label>
-                                    <input type="password" id="password" name="password" class="form-control">
-                                </div>
-                                <div class="row m-t-30">
-                                    <div class="col-md-12">
-                                        <button type="submit"
-                                            class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
-                                    </div>
+                            </div>
+                            <div class="form-group form-primary">
+                                <label for="email">Email</label>
+                                <input class="form-control" id="email" name="email" type="text">
+                            </div>
+                            <div class="form-group form-primary">
+                                <label for="password">Mật khẩu</label>
+                                <input class="form-control" id="password" name="password" type="password">
+                            </div>
+                            <div class="row m-t-30">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
+                                            type="submit">
+                                        LOGIN
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    <!-- end of form -->
-                </div>
-                <!-- Authentication card end -->
+                    </div>
+                </form>
+                <!-- end of form -->
             </div>
-            <!-- end of col-sm-12 -->
+            <!-- Authentication card end -->
         </div>
-        <!-- end of row -->
+        <!-- end of col-sm-12 -->
+    </div>
+    <!-- end of row -->
 
-        <!-- end of container-fluid -->
-    </section>
-    <!-- Required Jquery -->
-    <script type="text/javascript" th:src="@{/login/bower_components/jquery/js/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/login/bower_components/jquery-ui/js/jquery-ui.min.js}"></script>
-    <script type="text/javascript" th:src="@{/login/bower_components/popper.js/js/popper.min.js}"></script>
-    <script type="text/javascript" th:src="@{/login/bower_components/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- end of container-fluid -->
+</section>
+<!-- Required Jquery -->
+<script th:src="@{/login/bower_components/jquery/js/jquery.min.js}" type="text/javascript"></script>
+<script th:src="@{/login/bower_components/jquery-ui/js/jquery-ui.min.js}" type="text/javascript"></script>
+<script th:src="@{/login/bower_components/popper.js/js/popper.min.js}" type="text/javascript"></script>
+<script th:src="@{/login/bower_components/bootstrap/js/bootstrap.min.js}" type="text/javascript"></script>
 </body>
 
 </html>

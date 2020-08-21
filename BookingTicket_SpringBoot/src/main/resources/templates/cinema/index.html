@@ -1,58 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-	layout:decorator="layout/default">
+<html layout:decorator="layout/default"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Danh sách rạp chiếu phim</title>
+    <title>Danh sách rạp chiếu phim</title>
 </head>
 <body>
-	<section layout:fragment="content">
-		<h3 class="mb-3">Danh sách rạp chiếu phim</h3>
-		<div class="row">
-			<div class="col-md-8">
-				<a th:href="@{/admin/cinema/add}" class="btn btn-primary">Thêm mới</a>
-			</div>
-			<div class="col-md-4">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Tìm kiếm..." />
-					<div class="input-group-append">
+<section layout:fragment="content">
+    <h3 class="mb-3">Danh sách rạp chiếu phim</h3>
+    <div class="row">
+        <div class="col-md-8">
+            <a class="btn btn-primary" th:href="@{/admin/cinema/add}">Thêm mới</a>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <input class="form-control" placeholder="Tìm kiếm..." type="text"/>
+                <div class="input-group-append">
 						<span class="input-group-text" id="basic-addon2"> <i
-							class="fa fa-search"></i>
+                                class="fa fa-search"></i>
 						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<table class="table table-bordered table-hover mt-3">
-			<thead>
-				<tr>
-					<th>STT</th>
-					<th>Tên rạp</th>
-					<th>Hình ảnh</th>
-					<th>#</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:if="${cinemas.empty}">
-					<td colspan="5">Chưa có bản ghi nào!</td>
-				</tr>
-				<tr th:each="item : ${cinemas}">
-					<td th:text="${itemStat.index + 1}"></td>
-					<td th:text="${item.name}"></td>
-					<td>
-						<img th:src="${item.image}" height="50" />
-					</td>
-					<td>
-						<a th:href="@{/admin/cinema/edit/{id}(id=${item.id})}" class="btn btn-sm btn-info">
-							<i class="fa fa-pencil-square-o"></i>
-						</a> 
-						<a th:href="@{/admin/cinema/delete/{id}(id=${item.id})}" class="btn btn-sm btn-danger"> 
-							<i	class="fa fa-trash-o"></i>
-						</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered table-hover mt-3">
+        <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên rạp</th>
+            <th>Hình ảnh</th>
+            <th>#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${cinemas.empty}">
+            <td colspan="5">Chưa có bản ghi nào!</td>
+        </tr>
+        <tr th:each="item : ${cinemas}">
+            <td th:text="${itemStat.index + 1}"></td>
+            <td th:text="${item.name}"></td>
+            <td>
+                <img height="50" th:src="${item.image}"/>
+            </td>
+            <td>
+                <a class="btn btn-sm btn-info" th:href="@{/admin/cinema/edit/{id}(id=${item.id})}">
+                    <i class="fa fa-pencil-square-o"></i>
+                </a>
+                <a class="btn btn-sm btn-danger" th:href="@{/admin/cinema/delete/{id}(id=${item.id})}">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
 </body>
 </html>

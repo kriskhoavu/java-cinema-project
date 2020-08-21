@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CineplexRepository extends JpaRepository<Cineplex, Integer>{
-	
-	// Pagination
-	@Query("SELECT c FROM cineplex c")
-	public Page<Cineplex> findAllPaging(Pageable pageable);
+public interface CineplexRepository extends JpaRepository<Cineplex, Integer> {
+
+    // Pagination
+    @Query("SELECT c FROM cineplex c")
+    public Page<Cineplex> findAllPaging(Pageable pageable);
 }
