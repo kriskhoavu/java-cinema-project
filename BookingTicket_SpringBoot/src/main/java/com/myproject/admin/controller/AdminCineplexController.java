@@ -29,7 +29,7 @@ public class AdminCineplexController {
     @GetMapping("add")
     public String add(Model model) {
         model.addAttribute("cineplex", new Cineplex());
-        model.addAttribute("uploadUrlAPI", "TEST_NE");
+        model.addAttribute("uploadUrlAPI", CONSTANT.API_DMS_UPLOAD_FILE);
         return "cineplex/add";
     }
 

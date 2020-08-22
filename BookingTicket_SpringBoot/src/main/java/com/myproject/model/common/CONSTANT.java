@@ -10,4 +10,6 @@ public class CONSTANT {
     public static final String API_RESPONSE_STATUS_DESC_FAILED = "FAILED";
     public static final String API_RESPONSE_STATUS_DESC_NOT_FOUND = "NOT FOUND";
     public static final String API_RESPONSE_STATUS_DESC_REQUEST_MODEL = "REQUEST MODEL IS REQUIRED";
+
+    public static final String API_DMS_UPLOAD_FILE = "api/dms/upload";
 }
