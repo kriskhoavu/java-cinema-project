@@ -17,6 +17,11 @@ $(document).ready(
                 enctype: "multipart/form-data",
                 success: function (data, status) {
                     console.log(data);
+                    if(data.statusCode == 1) {
+                        $("#avatar").val(data.message);
+                        $("#imgdp").attr("src", data.message);
+
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(errorThrown);

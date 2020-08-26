@@ -53,6 +53,7 @@ public class AdminCineplexController {
     @GetMapping("edit/{id}")
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("cineplex", cineplexService.findById(id));
+        model.addAttribute("uploadUrlAPI", CONSTANT.API_DMS_UPLOAD_FILE);
         return "cineplex/edit";
     }
 

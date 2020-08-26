@@ -39,8 +39,9 @@ public class DMSController {
         try {
             createDirectory(path);
             writeFile(path, file);
+            String filePathName = "/upload/" + file.getOriginalFilename();
 
-            response = new ResponseModel(CONSTANT.API_RESPONSE_STATUS_CODE_OK, "fileName: " + file.getOriginalFilename());
+            response = new ResponseModel(CONSTANT.API_RESPONSE_STATUS_CODE_OK, filePathName);
             return _responseUtil.createResponse(HttpStatus.OK, response);
 
         } catch (Exception e) {

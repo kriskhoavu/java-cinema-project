@@ -34,6 +34,7 @@ public class AdminUserController {
     public String add(Model model) {
         model.addAttribute("user", new RegisterDto());
         model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("uploadUrlAPI", CONSTANT.API_DMS_UPLOAD_FILE);
         return "user/add";
     }
 
@@ -60,6 +61,7 @@ public class AdminUserController {
     public String edit(@PathVariable String id, Model model) {
         UserDto userDto = userService.findById(id);
         model.addAttribute("user", userDto);
+        model.addAttribute("uploadUrlAPI", CONSTANT.API_DMS_UPLOAD_FILE);
         model.addAttribute("roles", roleService.findAll());
         return "user/edit";
     }

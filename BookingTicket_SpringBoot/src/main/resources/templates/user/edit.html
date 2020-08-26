@@ -44,7 +44,8 @@
                 </div>
                 <div class="form-group">
                     <label>Avatar</label>
-                    <input th:field="*{avatar}" type="hidden"/>
+                    <input th:field="*{avatar}" type="hidden"/>va
+                    <input id="path" th:value="@{${uploadUrlAPI}}" type="hidden"/>
                     <input class="form-control" data-img="#imgdp" data-target="#avatar" id="fileUpload" type="file"/>
                     <span class="text-danger" th:errors="*{avatar}" th:if="${#fields.hasErrors('avatar')}"></span>
                     <img class="mt-2" height="100" id="imgdp" th:src="@{${user.avatar}}"/>
