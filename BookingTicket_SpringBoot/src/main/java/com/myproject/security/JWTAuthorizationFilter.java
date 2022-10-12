@@ -1,14 +1,12 @@
 package com.myproject.security;
 
 import io.jsonwebtoken.SignatureException;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,49 +14,48 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
-public class JWTAuthorizationFilter extends OncePerRequestFilter {
-    private final String TOKEN_PREFIX = "Bearer ";
-    private final String HEADER_STRING = "Authorization";
+public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+	private final String HEADER_STRING = "Authorization";
 
-    @Autowired
-    private UserDetailsService _userDetailsService;
+	private final UserDetailsService userDetailsService;
 
-    @Autowired
-    private JWTUtil _jwtUtil;
+	public JWTAuthorizationFilter(AuthenticationManager authenticationManager, UserDetailsService customUserDetailsService) {
+		super(authenticationManager);
+		this.userDetailsService = customUserDetailsService;
+	}
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+		final String header = request.getHeader(HEADER_STRING);
+		if (!JWTUtil.verifyHeader(header)) {
+			response.setStatus(401);
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().println("Login failed");
+			response.getWriter().close();
+			return;
+		}
 
-        final String header = request.getHeader(HEADER_STRING);
+		UsernamePasswordAuthenticationToken authenticationToken = getAuthenticationToken(request, header);
+		SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+		chain.doFilter(request, response);
+	}
 
-        if (header != null && header.startsWith(TOKEN_PREFIX)) {
-            UsernamePasswordAuthenticationToken authenticationToken = getAuthenticationtoken(request, header);
+	private UsernamePasswordAuthenticationToken getAuthenticationToken(HttpServletRequest request, String header) {
+		try {
+			String token = JWTUtil.getTokenFromHeader(header);
+			String username = JWTUtil.extractUsername(token);
+			if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+				if (JWTUtil.validateToken(token, userDetails)) {
+					return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+				}
+			}
+			return null;
 
-            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        }
-        chain.doFilter(request, response);
-    }
-
-    private UsernamePasswordAuthenticationToken getAuthenticationtoken(HttpServletRequest request, String header) {
-        try {
-            String token = _jwtUtil.getTokenFromHeader(header);
-            String username = _jwtUtil.extractUsername(token);
-
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = _userDetailsService.loadUserByUsername(username);
-
-                if (_jwtUtil.validateToken(token, userDetails)) {
-                    return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                }
-            }
-            return null;
-        } catch (SignatureException e) {
-            System.out.println("Invalid JWT signature.");
-            e.printStackTrace();
-            return null;
-        }
-    }
+		} catch (SignatureException e) {
+			System.out.println("Invalid JWT signature");
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

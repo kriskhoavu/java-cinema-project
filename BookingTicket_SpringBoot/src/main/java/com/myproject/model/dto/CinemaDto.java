@@ -12,13 +12,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CinemaDto {
-    private int id;
-    private String name;
-    private String address;
-    private String phone;
-    private String description;
-    private int cineplexId;
-    private String image;
-    private Cineplex cineplex;
-    private Set<Room> rooms;
+	private int id;
+	private String name;
+	private String address;
+	private String phone;
+	private String description;
+	private int cineplexId;
+	private String image;
+	private Cineplex cineplex;
+	private Set<Room> rooms;
 }

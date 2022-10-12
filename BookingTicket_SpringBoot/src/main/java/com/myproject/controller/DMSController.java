@@ -20,65 +20,65 @@ import java.util.Map;
 @Controller
 @RequestMapping("api/dms")
 public class DMSController {
-    private final String UPLOAD_FOLDER = "/resources/static/upload/";
-    private final String RESULT_FOLDER = "/statics/upload/";
+	private final String UPLOAD_FOLDER = "/resources/static/upload/";
+	private final String RESULT_FOLDER = "/statics/upload/";
 
-    @Autowired
-    ServletContext _servletContext;
+	@Autowired
+	ServletContext _servletContext;
 
-    @Autowired
-    private ResponseUtil _responseUtil;
+	@Autowired
+	private ResponseUtil _responseUtil;
 
-    @PostMapping("upload")
-    @ResponseBody
-    public ResponseEntity UploadDocument(@RequestParam MultipartFile file) {
-        //String path = _sevletContext.getRealPath(UPLOAD_FOLDER);
-        String path = "/Users/krisvu/Desktop/KrisProject/java-cinema-project/BookingTicket_SpringBoot/src/main" + UPLOAD_FOLDER;
-        ResponseModel response;
+	@PostMapping("upload")
+	@ResponseBody
+	public ResponseEntity UploadDocument(@RequestParam MultipartFile file) {
+		//String path = _sevletContext.getRealPath(UPLOAD_FOLDER);
+		String path = "/Users/krisvu/Desktop/KrisProject/java-cinema-project/BookingTicket_SpringBoot/src/main" + UPLOAD_FOLDER;
+		ResponseModel response;
 
-        try {
-            createDirectory(path);
-            writeFile(path, file);
-            String filePathName = "/upload/" + file.getOriginalFilename();
+		try {
+			createDirectory(path);
+			writeFile(path, file);
+			String filePathName = "/upload/" + file.getOriginalFilename();
 
-            response = new ResponseModel(CONSTANT.API_RESPONSE_STATUS_CODE_OK, filePathName);
-            return _responseUtil.createResponse(HttpStatus.OK, response);
+			response = new ResponseModel(CONSTANT.API_RESPONSE_STATUS_CODE_OK, filePathName);
+			return _responseUtil.createResponse(HttpStatus.OK, response);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return _responseUtil.createResponse(HttpStatus.EXPECTATION_FAILED, null);
-        }
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			return _responseUtil.createResponse(HttpStatus.EXPECTATION_FAILED, null);
+		}
+	}
 
-    @GetMapping(value = "load")
-    @ResponseBody
-    public Object GetDocument(String fileName) {
-        if (!fileName.isEmpty()) {
-            String pathSource = _servletContext.getContextPath() + RESULT_FOLDER + fileName;
+	@GetMapping(value = "load")
+	@ResponseBody
+	public Object GetDocument(String fileName) {
+		if (!fileName.isEmpty()) {
+			String pathSource = _servletContext.getContextPath() + RESULT_FOLDER + fileName;
 
-            Map<String, String> result = new HashMap<String, String>();
-            result.put("name", fileName);
-            result.put("url", pathSource);
-            return result;
-        }
-        return null;
-    }
+			Map<String, String> result = new HashMap<String, String>();
+			result.put("name", fileName);
+			result.put("url", pathSource);
+			return result;
+		}
+		return null;
+	}
 
-    private void createDirectory(String path) throws IOException {
-        File dir = new File(path);
+	private void createDirectory(String path) throws IOException {
+		File dir = new File(path);
 
-        if (!dir.exists()) {
-            if (!dir.mkdirs()) {
-                throw new IOException("Directory cannot be created");
-            }
-        }
-    }
+		if (!dir.exists()) {
+			if (!dir.mkdirs()) {
+				throw new IOException("Directory cannot be created");
+			}
+		}
+	}
 
-    private void writeFile(String path, MultipartFile file) throws IOException {
-        File pathFile = new File(path + file.getOriginalFilename());
+	private void writeFile(String path, MultipartFile file) throws IOException {
+		File pathFile = new File(path + file.getOriginalFilename());
 
-        FileOutputStream stream = new FileOutputStream(pathFile);
-        stream.write(file.getBytes());
-        stream.close();
-    }
+		FileOutputStream stream = new FileOutputStream(pathFile);
+		stream.write(file.getBytes());
+		stream.close();
+	}
 }

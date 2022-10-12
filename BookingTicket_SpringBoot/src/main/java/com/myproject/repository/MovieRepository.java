@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
-    @Query("SELECT e FROM movies e WHERE e.isPlaying = :isPlaying")
-    public List<Movie> findMoviePlaying(@Param("isPlaying") boolean isPlaying);
+	@Query("SELECT e FROM movies e WHERE e.isPlaying = :isPlaying")
+	List<Movie> findMoviePlaying(@Param("isPlaying") boolean isPlaying);
 }

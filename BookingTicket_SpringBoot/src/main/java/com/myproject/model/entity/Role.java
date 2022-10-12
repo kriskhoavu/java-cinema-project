@@ -8,11 +8,11 @@ import javax.persistence.Id;
 @Data
 @Entity(name = "roles")
 public class Role {
-    @Id
-    private String id;
-    private String name;
-    private String description;
+	@Id
+	private String id;
+	private String name;
+	private String description;
 
-    //@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    //private List<User> users;
+	//@OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+	//private List<User> users;
 }

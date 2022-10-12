@@ -7,13 +7,13 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 public interface SeatCategoryService {
-    public List<SeatCategory> findAll();
+	List<SeatCategory> findAll();
 
-    public SeatCategory findById(int id);
+	SeatCategory findById(int id);
 
-    public ResponseModel<Null> insert(SeatCategory model);
+	ResponseModel<Null> insert(SeatCategory model);
 
-    public ResponseModel<Null> update(SeatCategory model);
+	ResponseModel<Null> update(SeatCategory model);
 
-    public ResponseModel<Null> delete(int id);
+	ResponseModel<Null> delete(int id);
 }

@@ -7,13 +7,13 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 public interface RoleService {
-    public List<RoleDto> findAll();
+	List<RoleDto> findAll();
 
-    public RoleDto findById(String id);
+	RoleDto findById(String id);
 
-    public ResponseModel<Null> insert(RoleDto model);
+	ResponseModel<Null> insert(RoleDto model);
 
-    public ResponseModel<Null> update(RoleDto model);
+	ResponseModel<Null> update(RoleDto model);
 
-    public ResponseModel<Null> delete(String id);
+	ResponseModel<Null> delete(String id);
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CineplexRepository extends JpaRepository<Cineplex, Integer> {
 
-    // Pagination
-    @Query("SELECT c FROM cineplex c")
-    public Page<Cineplex> findAllPaging(Pageable pageable);
+	// Pagination
+	@Query("SELECT c FROM cineplex c")
+	Page<Cineplex> findAllPaging(Pageable pageable);
 }

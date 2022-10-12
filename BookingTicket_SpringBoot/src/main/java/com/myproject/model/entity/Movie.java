@@ -13,26 +13,26 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity(name = "movies")
 public class Movie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    private String name;
-    private String image;
-    private String trailer;
+	private String name;
+	private String image;
+	private String trailer;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
+	@Column(columnDefinition = "TEXT")
+	private String description;
 
-    @Column(name = "open_date")
-    @Temporal(TemporalType.DATE)
-    private Date openDate;
+	@Column(name = "open_date")
+	@Temporal(TemporalType.DATE)
+	private Date openDate;
 
-    @Column(name = "is_playing")
-    private boolean isPlaying;
+	@Column(name = "is_playing")
+	private boolean isPlaying;
 
-    private int ratting;
+	private int ratting;
 
-    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
-    private Set<Showtime> showtimes;
+	@OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
+	private Set<Showtime> showtimes;
 }

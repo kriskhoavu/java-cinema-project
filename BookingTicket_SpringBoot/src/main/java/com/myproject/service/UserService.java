@@ -8,13 +8,13 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 public interface UserService {
-    public List<UserDto> findAll();
+	List<UserDto> findAll();
 
-    public UserDto findById(String id);
+	UserDto findById(String id);
 
-    public ResponseModel<Null> insert(RegisterDto model);
+	ResponseModel<Null> insert(RegisterDto model);
 
-    public ResponseModel<Null> update(UserDto model);
+	ResponseModel<Null> update(UserDto model);
 
-    public ResponseModel<Null> delete(String id);
+	ResponseModel<Null> delete(String id);
 }

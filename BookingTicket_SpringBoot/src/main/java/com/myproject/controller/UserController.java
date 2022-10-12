@@ -16,16 +16,16 @@ import java.util.List;
 @RequestMapping("api/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @GetMapping("")
-    public ResponseEntity<List<UserDto>> all() {
-        return new ResponseEntity<List<UserDto>>(userService.findAll(), HttpStatus.OK);
-    }
+	@GetMapping("")
+	public ResponseEntity<List<UserDto>> all() {
+		return new ResponseEntity<List<UserDto>>(userService.findAll(), HttpStatus.OK);
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getById(@PathVariable String id) {
-        return new ResponseEntity<UserDto>(userService.findById(id), HttpStatus.OK);
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<UserDto> getById(@PathVariable String id) {
+		return new ResponseEntity<UserDto>(userService.findById(id), HttpStatus.OK);
+	}
 }
