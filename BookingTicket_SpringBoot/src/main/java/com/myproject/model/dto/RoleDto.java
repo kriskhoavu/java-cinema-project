@@ -10,11 +10,11 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoleDto {
-    private String id;
+	private String id;
 
-    @NotBlank(message = "Role name is required.")
-    private String name;
+	@NotBlank(message = "Role name is required.")
+	private String name;
 
-    @NotBlank(message = "Role description is required.")
-    private String description;
+	@NotBlank(message = "Role description is required.")
+	private String description;
 }

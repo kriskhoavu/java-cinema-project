@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CinemaRepository extends JpaRepository<Cinema, Integer> {
-    @Query("SELECT e FROM cinemas e")
-    public Page<Cinema> findAllPaging(Pageable pageable);
+	@Query("SELECT e FROM cinemas e")
+	Page<Cinema> findAllPaging(Pageable pageable);
 }

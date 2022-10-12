@@ -8,15 +8,15 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 public interface CineplexService {
-    public List<Cineplex> findAll();
+	List<Cineplex> findAll();
 
-    public Page<Cineplex> findAllPaging(int pageIndex, int pageSize);
+	Page<Cineplex> findAllPaging(int pageIndex, int pageSize);
 
-    public Cineplex findById(int id);
+	Cineplex findById(int id);
 
-    public ResponseModel<Null> insert(Cineplex model);
+	ResponseModel<Null> insert(Cineplex model);
 
-    public ResponseModel<Null> update(Cineplex model);
+	ResponseModel<Null> update(Cineplex model);
 
-    public ResponseModel<Null> delete(int id);
+	ResponseModel<Null> delete(int id);
 }

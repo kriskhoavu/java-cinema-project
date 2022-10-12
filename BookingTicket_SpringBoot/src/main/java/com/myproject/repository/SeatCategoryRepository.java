@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SeatCategoryRepository extends JpaRepository<SeatCategory, Integer> {
-    public SeatCategory findByName(String name);
+	SeatCategory findByName(String name);
 }

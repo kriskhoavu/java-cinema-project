@@ -7,15 +7,15 @@ import javax.validation.constraints.Null;
 import java.util.List;
 
 public interface MovieService {
-    public List<Movie> findAll();
+	List<Movie> findAll();
 
-    public Movie findById(int id);
+	Movie findById(int id);
 
-    public ResponseModel<Null> insert(Movie model);
+	ResponseModel<Null> insert(Movie model);
 
-    public ResponseModel<Null> update(Movie model);
+	ResponseModel<Null> update(Movie model);
 
-    public ResponseModel<Null> delete(int id);
+	ResponseModel<Null> delete(int id);
 
-    public List<Movie> findMoviePlaying(boolean isPlaying);
+	List<Movie> findMoviePlaying(boolean isPlaying);
 }

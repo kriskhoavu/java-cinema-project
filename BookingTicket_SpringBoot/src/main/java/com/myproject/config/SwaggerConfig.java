@@ -15,23 +15,23 @@ import java.util.Collections;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.myproject.controller"))
-                .build()
-                .apiInfo(apiInfo());
-    }
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2)
+			.select()
+			.apis(RequestHandlerSelectors.basePackage("com.myproject.controller"))
+			.build()
+			.apiInfo(apiInfo());
+	}
 
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "My REST API",
-                "Some custom description of API",
-                "1.0",
-                "urn:tos",
-                new Contact("Kris Vu", "www.krismovie.com", "khoavu.its@gmail.com"),
-                "License of API",
-                "API license URL", Collections.emptyList());
-    }
+	private ApiInfo apiInfo() {
+		return new ApiInfo(
+			"My REST API",
+			"Some custom description of API",
+			"1.0",
+			"urn:tos",
+			new Contact("Kris Vu", "www.krismovie.com", "khoavu.its@gmail.com"),
+			"License of API",
+			"API license URL", Collections.emptyList());
+	}
 }

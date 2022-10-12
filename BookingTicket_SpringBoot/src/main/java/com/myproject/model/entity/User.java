@@ -12,24 +12,24 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity(name = "users")
 public class User {
-    @Id
-    private String id;
-    private String email;
-    private String fullname;
-    private String password;
-    private String avatar;
-    private String phone;
-    private String address;
-    private String website;
-    private String facebook;
+	@Id
+	private String id;
+	private String email;
+	private String fullname;
+	private String password;
+	private String avatar;
+	private String phone;
+	private String address;
+	private String website;
+	private String facebook;
 
-    @Column(name = "role_id")
-    private String roleId;
+	@Column(name = "role_id")
+	private String roleId;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", insertable = false, updatable = false)
-    private Role role;
+	@ManyToOne
+	@JoinColumn(name = "role_id", insertable = false, updatable = false)
+	private Role role;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Ticket> tickets;
+	@OneToMany(mappedBy = "user")
+	private Set<Ticket> tickets;
 }
