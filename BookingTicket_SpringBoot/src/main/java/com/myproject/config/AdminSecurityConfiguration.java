@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Order(1)
+@Order(2)
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -29,9 +29,7 @@ public class AdminSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.headers().frameOptions().disable();
 		http.csrf().disable()
-			.antMatcher("/admin/**")
 			.authorizeRequests()
-			.antMatchers("/admin/login").permitAll()
 			.antMatchers("/admin/**").hasAnyRole("ADMIN")
 			.anyRequest().permitAll()
 			.and()

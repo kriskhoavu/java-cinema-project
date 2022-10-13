@@ -15,7 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Order(2)
+@Order(1)
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor

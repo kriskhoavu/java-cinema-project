@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class AppConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/*")
+		registry.addMapping("/api/**")
 			.allowedOrigins("*")
 			.allowCredentials(false)
 			.maxAge(4800)
