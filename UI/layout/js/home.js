@@ -1,5 +1,5 @@
 $.ajax ({
-    url: "http://localhost:8080/api/movie/playing/false",
+    url: "http://localhost:8080/api/movie/playing/true",
     type: "GET",
     dataType: "JSON",
       headers: {
