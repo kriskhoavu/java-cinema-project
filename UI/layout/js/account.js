@@ -12,8 +12,8 @@ $('#btnLogin').click(function () {
         contentType: "application/json",
         data: data
     }).done(res => {
-            localStorage.setItem('TOKEN', res.jwt);
-            location.reload();
+        localStorage.setItem('TOKEN', res.jwt);
+        location.reload();
     }).fail(errs => {
         alert(errs);
     });
