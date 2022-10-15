@@ -1,8 +1,8 @@
 package com.myproject.service.impl;
 
+import com.myproject.entity.Movie;
 import com.myproject.model.common.CONSTANT;
 import com.myproject.model.common.ResponseModel;
-import com.myproject.model.entity.Movie;
 import com.myproject.repository.MovieRepository;
 import com.myproject.service.MovieService;
 import lombok.RequiredArgsConstructor;

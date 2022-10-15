@@ -1,7 +1,7 @@
 package com.myproject.model.dto;
 
-import com.myproject.model.entity.Cineplex;
-import com.myproject.model.entity.Room;
+import com.myproject.entity.Cineplex;
+import com.myproject.entity.Room;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

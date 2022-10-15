@@ -1,7 +1,7 @@
 package com.myproject.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.myproject.model.entity.User;
+import com.myproject.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;

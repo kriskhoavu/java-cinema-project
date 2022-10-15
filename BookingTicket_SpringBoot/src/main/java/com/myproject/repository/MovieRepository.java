@@ -1,6 +1,6 @@
 package com.myproject.repository;
 
-import com.myproject.model.entity.Movie;
+import com.myproject.entity.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

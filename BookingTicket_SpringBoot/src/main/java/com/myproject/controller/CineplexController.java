@@ -1,9 +1,9 @@
 package com.myproject.controller;
 
 import com.myproject.Util.ResponseUtil;
+import com.myproject.entity.Cineplex;
 import com.myproject.model.common.CONSTANT;
 import com.myproject.model.common.ResponseModel;
-import com.myproject.model.entity.Cineplex;
 import com.myproject.service.CineplexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

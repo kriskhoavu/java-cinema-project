@@ -7,7 +7,7 @@ $('#btnLogin').click(function () {
     });
     console.log(JSON.stringify(data));
     $.ajax({
-        url: "http://localhost:8082/login",
+        url: "http://localhost:8080/register",
         type: 'POST',
         contentType: "application/json",
         data: data

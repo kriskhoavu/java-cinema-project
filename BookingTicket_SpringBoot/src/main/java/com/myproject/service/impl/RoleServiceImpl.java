@@ -1,9 +1,9 @@
 package com.myproject.service.impl;
 
+import com.myproject.entity.Role;
 import com.myproject.model.common.CONSTANT;
 import com.myproject.model.common.ResponseModel;
 import com.myproject.model.dto.RoleDto;
-import com.myproject.model.entity.Role;
 import com.myproject.repository.RoleRepository;
 import com.myproject.service.RoleService;
 import lombok.RequiredArgsConstructor;

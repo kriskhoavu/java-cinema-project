@@ -1,8 +1,8 @@
 package com.myproject.admin.controller;
 
+import com.myproject.entity.SeatCategory;
 import com.myproject.model.common.CONSTANT;
 import com.myproject.model.common.ResponseModel;
-import com.myproject.model.entity.SeatCategory;
 import com.myproject.service.SeatCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

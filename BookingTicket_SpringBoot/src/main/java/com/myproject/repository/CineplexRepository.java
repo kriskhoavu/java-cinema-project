@@ -1,6 +1,6 @@
 package com.myproject.repository;
 
-import com.myproject.model.entity.Cineplex;
+import com.myproject.entity.Cineplex;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

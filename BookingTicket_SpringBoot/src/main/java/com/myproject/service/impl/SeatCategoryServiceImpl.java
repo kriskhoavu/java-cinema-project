@@ -1,8 +1,8 @@
 package com.myproject.service.impl;
 
+import com.myproject.entity.SeatCategory;
 import com.myproject.model.common.CONSTANT;
 import com.myproject.model.common.ResponseModel;
-import com.myproject.model.entity.SeatCategory;
 import com.myproject.repository.SeatCategoryRepository;
 import com.myproject.service.SeatCategoryService;
 import lombok.RequiredArgsConstructor;

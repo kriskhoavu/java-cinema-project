@@ -1,7 +1,7 @@
 package com.myproject.service;
 
+import com.myproject.entity.Cineplex;
 import com.myproject.model.common.ResponseModel;
-import com.myproject.model.entity.Cineplex;
 import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Null;

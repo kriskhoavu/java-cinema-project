@@ -1,8 +1,8 @@
 $.ajax ({
-    url: "http://localhost:8082/api/movie/playing/false",
+    url: "http://localhost:8080/api/movie/playing/false",
     type: "GET",
-    dataType: "JSON"
-    ,  headers: {
+    dataType: "JSON",
+      headers: {
         'Authorization': 'Bearer ' + localStorage.getItem("TOKEN"),
         'Content-Type': 'application/json'
     }
@@ -29,10 +29,10 @@ $.ajax ({
             </div>
         </div>
         `;
-    })
+    });
    
     $('#upcoming_movie').html(content);
 })
 .fail(errs => {
-    alert(errs);
+    console.log(errs);
 });

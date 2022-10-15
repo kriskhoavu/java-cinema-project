@@ -1,12 +1,12 @@
 package com.myproject.service.impl;
 
+import com.myproject.entity.Role;
+import com.myproject.entity.User;
 import com.myproject.model.common.CONSTANT;
 import com.myproject.model.common.ResponseModel;
 import com.myproject.model.dto.RegisterDto;
 import com.myproject.model.dto.RoleDto;
 import com.myproject.model.dto.UserDto;
-import com.myproject.model.entity.Role;
-import com.myproject.model.entity.User;
 import com.myproject.repository.UserRepository;
 import com.myproject.service.UserService;
 import lombok.RequiredArgsConstructor;

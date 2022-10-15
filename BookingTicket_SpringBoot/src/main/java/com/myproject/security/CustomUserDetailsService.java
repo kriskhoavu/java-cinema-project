@@ -1,6 +1,6 @@
 package com.myproject.security;
 
-import com.myproject.model.entity.User;
+import com.myproject.entity.User;
 import com.myproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

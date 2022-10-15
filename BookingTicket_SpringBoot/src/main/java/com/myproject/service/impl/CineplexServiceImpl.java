@@ -1,8 +1,8 @@
 package com.myproject.service.impl;
 
+import com.myproject.entity.Cineplex;
 import com.myproject.model.common.CONSTANT;
 import com.myproject.model.common.ResponseModel;
-import com.myproject.model.entity.Cineplex;
 import com.myproject.repository.CineplexRepository;
 import com.myproject.service.CineplexService;
 import lombok.RequiredArgsConstructor;
