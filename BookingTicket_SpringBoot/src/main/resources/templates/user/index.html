@@ -42,7 +42,7 @@
             <td th:text="${item.fullname}"></td>
             <td th:text="${item.email}"></td>
             <td>
-                <img height="50" th:src="@{${item.avatar}}"/>
+                <img height="150" width="150" th:src="@{${item.avatar}}"/>
             </td>
             <td>
                 <a class="btn btn-sm btn-info" th:href="@{/admin/user/edit/{id}(id=${item.id})}">

@@ -30,8 +30,7 @@ VALUES (1,
 
 INSERT INTO `roles`
 VALUES ('5711db39-6ddf-4c68-b256-ebf6cd27efb5', 'Quản trị hệ thống', 'ROLE_ADMIN'),
-       ('6e9f28ae-4bab-4bab-9a63-39d49cdafca2', 'Học viên', 'ROLE_STUDENT'),
-       ('ee2dd09f-03f1-4c5f-803b-ed330b64920f', 'Giảng viên', 'ROLE_TEACHER');
+       ('6e9f28ae-4bab-4bab-9a63-39d49cdafca2', 'Người Dùng', 'ROLE_USER');
 
 INSERT INTO `users`
 VALUES ('848e6645-65c2-43b3-b0b9-1b4a04146314', '', '/upload/cute_cat.jpg',
